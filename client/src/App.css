@@ -1,0 +1,53 @@
+/* HOME PAGE */
+.App {
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  padding: 0;
+  margin: 0;
+}
+.container{
+  width: 100%;
+}
+.car{
+  width: 600px;
+  text-align: center;
+  margin: 20px;
+  background: linear-gradient(to bottom, rgb(235, 235, 235), rgb(143, 143, 143));
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* shadow */
+  -webkit-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.4);
+  -moz-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.4);
+  box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.4);
+}
+.car img{
+  width: 40%;
+  position: relative;
+  left: 4%;
+  margin: 10px;
+}
+.infoWithPhoto{
+  display: flex;
+  justify-content: center;
+}
+.moreInfoKeys{
+  width: 130px;
+  text-align: left;
+  position: relative;
+  right: 3%;
+}
+.moreInfoValues{
+  width: 130px;
+  text-align: left;
+  position: relative;
+  left: 4%;
+  font-weight: bold;
+}
+.brand{
+  line-height: 5px;
+}
+.model{
+  line-height: 5px;
+}
+
+
+
