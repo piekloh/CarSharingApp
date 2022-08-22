@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {Cars} = require('../models')
 
+
+
 ////////////////////image to db///////////////////
 const multer = require('multer')
 const path = require('path')
@@ -26,7 +28,7 @@ const upload = multer({
     if(mimeType && extname){
       return cb(null, true)
     }
-    cb('Give proper files formate to upload') //może być potrzebne else
+    cb('Give proper files formate to upload') 
   }
 }).single('image') //ten sam "image" co w models/Cars.js(kolumna w BD)
 //single, czyli, że będziemy dodawać tylko 1 obrazek
@@ -56,7 +58,7 @@ router.post('/', upload,async (req,res)=>{
     price: req.body.price,
     size: req.body.size,
     available: req.body.available,
-    image: req.file.path
+    image: req.body.image.name
   }
   await Cars.create(car);
   res.json(car);

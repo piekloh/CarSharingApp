@@ -1,28 +1,34 @@
 /* HOME PAGE */
+body{
+  margin: 0;
+  padding: 0;
+}
 .App {
   font-family:Georgia, 'Times New Roman', Times, serif;
-  padding: 0;
-  margin: 0;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/cardboard_flat.png");
 }
 .container{
-  width: 100%;
+
 }
 .car{
-  width: 600px;
   text-align: center;
-  margin: 20px;
-  background: linear-gradient(to bottom, rgb(235, 235, 235), rgb(143, 143, 143));
+  margin: 40px;
+  padding: 20px;
+  background: linear-gradient(to bottom, rgb(245, 245, 245), rgb(218, 218, 218));
   padding-top: 10px;
   padding-bottom: 10px;
+  border-radius: 8px;
   /* shadow */
-  -webkit-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.4);
-  -moz-box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.4);
-  box-shadow: 10px 10px 5px 1px rgba(0,0,0,0.4);
+  -webkit-box-shadow: 10px 10px 5px 1px rgba(31, 31, 31, 0.4);
+  -moz-box-shadow: 10px 10px 5px 1px rgba(36, 36, 36, 0.4);
+  box-shadow: 10px 10px 5px 1px rgba(37, 37, 37, 0.4);
 }
 .car img{
   width: 40%;
+  height: 80%;
+  padding-right: 30px;
   position: relative;
-  left: 4%;
+  left: 1%;
   margin: 10px;
 }
 .infoWithPhoto{
@@ -30,13 +36,14 @@
   justify-content: center;
 }
 .moreInfoKeys{
-  width: 130px;
+  padding-left: 30px;
+  width: 30%;
   text-align: left;
   position: relative;
   right: 3%;
 }
 .moreInfoValues{
-  width: 130px;
+  width: 30%;
   text-align: left;
   position: relative;
   left: 4%;
@@ -48,6 +55,14 @@
 .model{
   line-height: 5px;
 }
-
-
+.row{
+  width: 100%;
+}
+/* CREATE CAR */
+.inputField{
+  padding: 10px;
+}
+.inputField  p{
+  color: red
+}
 
