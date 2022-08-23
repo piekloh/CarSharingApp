@@ -40,15 +40,12 @@ module.exports={
 ////////////////////image to db////////////////////
 
 
-
-
-
 router.get('/', async (req, res)=>{
   const listOfCars = await Cars.findAll();
   res.json(listOfCars);
 });
 
-router.post('/', upload,async (req,res)=>{
+router.post('/', upload, async (req,res)=>{
   let car = {
     brand: req.body.brand,
     model: req.body.model,
@@ -58,38 +55,11 @@ router.post('/', upload,async (req,res)=>{
     price: req.body.price,
     size: req.body.size,
     available: req.body.available,
-    image: req.file.path
+    image: req.file.path //!!! tak się zapisuje plik
   }
   await Cars.create(car);
   res.json(car);
   //
 }); 
-
-
-
-// const FormData = require('form-data');
-// const form = new FormData();
-
-// form.append('brand', 'Opel');
-// form.append('model', 'Astra');
-// form.append('passengers', 5);
-// form.append('doors', 5);
-// form.append('gearbox', 'manualna');
-// form.append('price', 400);
-// form.append('size', 'średni');
-// form.append('available', 'dostępny');
-
-// // const image = fs.readFile('./opelastrah.jpg');
-
-
-// // form.append('image', file, 'opelastrah.jpg');
-
-
-
-
-
-
-
-
 
 module.exports = router;

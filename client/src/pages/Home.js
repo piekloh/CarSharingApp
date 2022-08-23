@@ -38,7 +38,7 @@ function Home() {
                     <p>{value.size}</p>
                     <p>{value.price}</p>
                   </div>
-                  <img src={value.image.replace('..\\client\\public\\','').replace("\\","/")}/> 
+                  {value.image &&(<img src={value.image.replace('..\\client\\public\\','').replace("\\","/")}/>)} 
                 </div>
                 <div className='availability'>
                   {value.available ? (<h2 style={{color: "green"}}>Dostępny</h2>):(<h2 style={{color: "red"}}>Niedostępny</h2>)}

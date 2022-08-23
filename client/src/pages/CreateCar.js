@@ -3,10 +3,14 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+import {useNavigate, UseNavigate} from 'react-router-dom'
+
 const FormData = require('form-data');
 
 
 function CreateCar() {
+
+  let navigate = useNavigate();
 
   const initialValues = {
     brand: '',
@@ -35,11 +39,7 @@ function CreateCar() {
   const onSubmit = async (data)=>{
     const form = new FormData();
 
-   
-    const headers = {
-      'Content-Type': 'application/json',
-    }
-  
+   console.log(data)
 
     form.append('brand', data.brand);
     form.append('model', data.model);
@@ -52,12 +52,12 @@ function CreateCar() {
     form.append('image', data.image);
 
 
-    axios.post("http://localhost:3001/cars", form, {headers: headers})
+    axios.post("http://localhost:3001/cars", form)
       .then((response)=>{
-      console.log("It worked")//nie działa
+      console.log("It worked")
+      navigate('/');
     })
-    console.log(data)//działa, ale bez obrazka
-    console.log(data.image.name)
+    
   }
 
   return (
@@ -75,6 +75,7 @@ function CreateCar() {
                 <option value='Opel'>Opel</option>
                 <option value='Audi'>Audi</option>
                 <option value='Toyota'>Toyota</option>
+                <option value='Skoda'>Skoda</option>
               </Field>
             </div>
 {/* model */}
