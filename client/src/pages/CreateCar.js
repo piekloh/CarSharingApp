@@ -3,6 +3,9 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
+const FormData = require('form-data');
+
+
 function CreateCar() {
 
   const initialValues = {
@@ -29,21 +32,37 @@ function CreateCar() {
     image:Yup.string().required("Wybierz zdjęcie"),
   })
 
-  const onSubmit =(data)=>{
-    axios.post("http://localhost:3001/cars", data).then((response)=>{
-      
+  const onSubmit = async (data)=>{
+    const form = new FormData();
+
+   
+    const headers = {
+      'Content-Type': 'application/json',
+    }
+  
+
+    form.append('brand', data.brand);
+    form.append('model', data.model);
+    form.append('passengers', data.passengers);
+    form.append('doors', data.doors);
+    form.append('gearbox', data.gearbox);
+    form.append('price', data.price);
+    form.append('size', data.size);
+    form.append('available', data.available);
+    form.append('image', data.image);
+
+
+    axios.post("http://localhost:3001/cars", form, {headers: headers})
+      .then((response)=>{
+      console.log("It worked")//nie działa
     })
-    // console.log(data)
-    // console.log(data.image.name)
+    console.log(data)//działa, ale bez obrazka
+    console.log(data.image.name)
   }
-
-  const formData = new FormData();
-
-
 
   return (
     <div className='createCarPage'>
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema} enctype="multipart/form-data" method="post" encType='multipart/form-data'>
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
 
         {({values, setFieldValue})=>(
           <Form>

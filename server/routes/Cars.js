@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {Cars} = require('../models')
 
-
+const fs = require('fs/promises');
 
 ////////////////////image to db///////////////////
 const multer = require('multer')
@@ -28,7 +28,7 @@ const upload = multer({
     if(mimeType && extname){
       return cb(null, true)
     }
-    cb('Give proper files formate to upload') 
+    cb('Give proper files formate to upload')
   }
 }).single('image') //ten sam "image" co w models/Cars.js(kolumna w BD)
 //single, czyli, że będziemy dodawać tylko 1 obrazek
@@ -58,12 +58,32 @@ router.post('/', upload,async (req,res)=>{
     price: req.body.price,
     size: req.body.size,
     available: req.body.available,
-    image: req.body.image.name
+    image: req.file.path
   }
   await Cars.create(car);
   res.json(car);
   //
-});
+}); 
+
+
+
+// const FormData = require('form-data');
+// const form = new FormData();
+
+// form.append('brand', 'Opel');
+// form.append('model', 'Astra');
+// form.append('passengers', 5);
+// form.append('doors', 5);
+// form.append('gearbox', 'manualna');
+// form.append('price', 400);
+// form.append('size', 'średni');
+// form.append('available', 'dostępny');
+
+// // const image = fs.readFile('./opelastrah.jpg');
+
+
+// // form.append('image', file, 'opelastrah.jpg');
+
 
 
 
