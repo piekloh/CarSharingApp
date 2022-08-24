@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const {Cars} = require('../models')
 
-const fs = require('fs/promises');
-
 ////////////////////image to db///////////////////
 const multer = require('multer')
 const path = require('path')
@@ -44,6 +42,12 @@ router.get('/', async (req, res)=>{
   const listOfCars = await Cars.findAll();
   res.json(listOfCars);
 });
+
+router.get('/byId/:id', async (req,res)=>{
+  const id = req.params.id;
+  const car = await Cars.findByPk(id);
+  res.json(car);
+})
 
 router.post('/', upload, async (req,res)=>{
   let car = {

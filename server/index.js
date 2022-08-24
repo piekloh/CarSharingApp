@@ -13,6 +13,8 @@ app.use('/Images', express.static('../client/public/Images'))
 
 const carRouter = require('./routes/Cars');
 app.use('/cars', carRouter);
+const opinionRouter = require('./routes/Opinions');
+app.use('/opinions', opinionRouter);
 
 
 

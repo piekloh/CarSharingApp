@@ -2,8 +2,7 @@ import React from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-
-import {useNavigate, UseNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 const FormData = require('form-data');
 

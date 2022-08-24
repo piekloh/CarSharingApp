@@ -40,5 +40,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     }
   })
+
+
+
+  Cars.associate = (models) => {
+    Cars.hasMany(models.Opinions, {
+      onDelete: "cascade",
+    })
+  }
+
   return Cars;
 }

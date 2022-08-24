@@ -2,10 +2,10 @@
 body{
   margin: 0;
   padding: 0;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/cardboard_flat.png");
 }
 .App {
   font-family:Georgia, 'Times New Roman', Times, serif;
-  background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/cardboard_flat.png");
 }
 .container{
 
@@ -19,6 +19,12 @@ body{
   padding-bottom: 10px;
   border-radius: 8px;
   /* shadow */
+  -webkit-box-shadow: 10px 10px 84px -32px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 84px -32px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 84px -32px rgba(0,0,0,0.75);
+}
+.car:hover{
+  cursor: pointer;
   -webkit-box-shadow: 10px 10px 5px 1px rgba(31, 31, 31, 0.4);
   -moz-box-shadow: 10px 10px 5px 1px rgba(36, 36, 36, 0.4);
   box-shadow: 10px 10px 5px 1px rgba(37, 37, 37, 0.4);
@@ -58,6 +64,28 @@ body{
 .row{
   width: 100%;
 }
+.customNavBg{
+  background-color: rgb(143, 143, 143);
+  font-size: 20px;
+}
+.form-inline p{
+  display: inline-block;
+  padding: 0px 8px;
+}
+.form-inline button{
+  color: rgba(8, 8, 8, 0.4);
+  border: 2px solid rgba(8, 8, 8, 0.4);
+}
+.form-inline button:hover{
+  color: rgb(160, 160, 160);
+  background-color: rgb(110, 110, 110);
+  border: 2px solid rgba(51, 51, 51, 0.4);
+  }
+  .navbar-brand img{
+    width: 40px;
+  
+  }
+
 /* CREATE CAR */
 .inputField{
   padding: 10px;

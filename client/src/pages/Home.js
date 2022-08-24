@@ -2,10 +2,13 @@ import React from 'react'
 import axios from "axios";
 import {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {useNavigate} from 'react-router-dom'
+
 
 function Home() {
 
   const [listOfCars, setListOfCars] = useState([]);
+  let navigate = useNavigate();
 
   useEffect(()=>{
     axios.get("http://localhost:3001/cars").then((response)=>{
@@ -20,7 +23,7 @@ function Home() {
       <div className='container'>
           <div className='row'>
             {listOfCars.map((value, key)=>{
-              return(<div className='car col-8' key={key}>
+              return(<div className='car col-8' key={key} onClick={()=>{navigate(`/car/${value.id}`)}}>
                 <div className='brand'><h2>{value.brand}</h2></div>
                 <div className='model'><h4>{value.model}</h4></div>
                 <div className='infoWithPhoto'>
@@ -43,7 +46,6 @@ function Home() {
                 <div className='availability'>
                   {value.available ? (<h2 style={{color: "green"}}>Dostępny</h2>):(<h2 style={{color: "red"}}>Niedostępny</h2>)}
                 </div>
-                
               </div>)
             })}
           </div>
