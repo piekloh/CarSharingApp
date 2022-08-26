@@ -12,13 +12,11 @@ function App() {
 
   return (
     <div className='App'>
-
-
+    <Router>
       <nav className="navbar navbar-light navbar-expand-lg sticky-top pt-2 pb-0 ps-3 customNavBg">
-        <a className="navbar-brand" href="#">
-          <img src='Images\carsharinglogo.png'/>
-          {/* Obrazek nie działa na podstronach */}
-        </a>
+        <Link to='/' className="navbar-brand"><img src='Images\carsharinglogo.png'/>
+          {/* Obrazek nie działa na podstronach po odświeżeniu */}</Link>
+        
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -54,7 +52,7 @@ function App() {
       </nav>
 
 
-      <Router>
+      
         <Link to='/createcar' title='Dodaj nowy samochód'><AddCircleIcon sx={{
         fontSize: 60,
         color: 'rgb(143, 143, 143)',
@@ -63,7 +61,7 @@ function App() {
         right: 40,
         bottom: 40
         }}/></Link>
-        <Link to='/'>Strona główna</Link>
+        
           
         
         <Routes>

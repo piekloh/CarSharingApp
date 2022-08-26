@@ -15,6 +15,8 @@ const carRouter = require('./routes/Cars');
 app.use('/cars', carRouter);
 const opinionRouter = require('./routes/Opinions');
 app.use('/opinions', opinionRouter);
+const userRouter = require('./routes/Users');
+app.use('/auth', userRouter);
 
 
 
