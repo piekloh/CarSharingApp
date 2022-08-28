@@ -81,9 +81,8 @@ body{
   background-color: rgb(110, 110, 110);
   border: 2px solid rgba(51, 51, 51, 0.4);
   }
-  .navbar-brand img{
+.navbar-brand img{
     width: 60px;
-  
   }
 
 /* CREATE CAR */
