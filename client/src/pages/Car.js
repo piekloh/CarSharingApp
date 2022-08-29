@@ -7,10 +7,9 @@ function Car() {
 
   const [carObject, setCarObject] = useState({}); //obiekt
   const [opinions, setOpinions] = useState([]); //tabela obiektów
-  const [newOpinion, setNewOpinion] = useState('');
+  const [newOpinion, setNewOpinion] = useState("");
 
   useEffect(() => {
-    
     axios.get(`http://localhost:3001/cars/byId/${id}`).then((response) => {
       setCarObject(response.data);
     });
@@ -18,17 +17,29 @@ function Car() {
     axios.get(`http://localhost:3001/opinions/${id}`).then((response) => {
       setOpinions(response.data);
     });
-
   }, []);
 
-  const addOpinion = () =>{
-    axios.post(`http://localhost:3001/opinions`, {opinionBody: newOpinion, CarId: id}).then((response)=>{
-      const opinionToAdd = {opinionBody: newOpinion};
-      setOpinions([...opinions, opinionToAdd]);
-      setNewOpinion('');
-    })
-    
-  }
+  const addOpinion = () => {
+    axios
+      .post(`http://localhost:3001/opinions`, {
+        opinionBody: newOpinion,
+        CarId: id,
+      },
+      {
+        headers:{
+          accessToken: sessionStorage.getItem("accessToken")
+        }
+      })
+      .then((response) => {
+        if (response.data.error) console.log(response.data.error);
+        else{
+          // console.log(response.data)
+          const opinionToAdd = { opinionBody: response.data.opinionBody };
+          setOpinions([...opinions, opinionToAdd]);
+          setNewOpinion("");
+      }
+      });
+  };
 
   return (
     <>
@@ -45,7 +56,8 @@ function Car() {
         </div>
         <div className="image">
           {carObject.image && (
-            <img className="img-fluid"
+            <img
+              className="img-fluid"
               src={carObject.image
                 .replace("..\\client\\public", "")
                 .replace("\\", "/")}
@@ -83,32 +95,43 @@ function Car() {
         </div>
       </div>
       <div className="opinions">
-      <h3 className="pt-4">Opinie:</h3>
+        <h3 className="pt-4">Opinie:</h3>
         <div className="addOpinionContainer pt-4 ">
-          <input type='text' placeholder='Napisz swoją opinię...' className="mx-2" onChange={(event) => {setNewOpinion(event.target.value)}} value={newOpinion}/>
-          <button onClick={addOpinion}>
-            Dodaj opinię
-          </button>
+          <input
+            type="text"
+            placeholder="Napisz swoją opinię..."
+            className="mx-2"
+            onChange={(event) => {
+              setNewOpinion(event.target.value);
+            }}
+            value={newOpinion}
+          />
+          <button onClick={addOpinion}>Dodaj opinię</button>
         </div>
 
-{/* Opinions */}
+        {/* Opinions */}
 
         <div className="listOfOpinions">
-          {opinions.map((opinion, key)=>{
-             return(
-            <div className="opinion" key={key}>
-              <div className="opinionBody">{opinion.opinionBody}</div>
-              <div className="opinionCreatedAt">
-                Dodano&nbsp;
-                {opinion.createdAt ? (<span>{opinion.createdAt.replace("T", ", ")
-                .replace(".000Z", "")}</span>):(<span>chwilę temu...</span>)}
-               
-
+          {opinions.map((opinion, key) => {
+            return (
+              <div className="opinion" key={key}>
+                <div className="opinionBody">{opinion.opinionBody}</div>
+                <div className="opinionCreatedAt">
+                  Dodano&nbsp;
+                  {opinion.createdAt ? (
+                    <span>
+                      {opinion.createdAt
+                        .replace("T", ", ")
+                        .replace(".000Z", "")}
+                    </span>
+                  ) : (
+                    <span>chwilę temu...</span>
+                  )}
+                </div>
               </div>
-            </div>
-            )})}
+            );
+          })}
         </div>
-
       </div>
     </>
   );
