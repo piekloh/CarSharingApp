@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import {AuthContext} from '../helpers/AuthContext';
+
 
 function Car() {
   let { id } = useParams();
@@ -8,6 +10,8 @@ function Car() {
   const [carObject, setCarObject] = useState({}); //obiekt
   const [opinions, setOpinions] = useState([]); //tabela obiektów
   const [newOpinion, setNewOpinion] = useState("");
+  const {authState} = useContext(AuthContext);
+
 
   useEffect(() => {
     axios.get(`http://localhost:3001/cars/byId/${id}`).then((response) => {
@@ -27,19 +31,27 @@ function Car() {
       },
       {
         headers:{
-          accessToken: sessionStorage.getItem("accessToken")
+          accessToken: localStorage.getItem("accessToken")
         }
       })
       .then((response) => {
         if (response.data.error) console.log(response.data.error);
         else{
-          // console.log(response.data)
-          const opinionToAdd = { opinionBody: response.data.opinionBody };
-          setOpinions([...opinions, opinionToAdd]);
+          setOpinions([...opinions, {id: response.data.id,opinionBody: newOpinion, CarId: id, username: response.data.username}]); 
+
           setNewOpinion("");
       }
       });
   };
+
+  const deleteOpinion = (id) =>{
+    axios.delete(`http://localhost:3001/opinions/${id}`, {headers: {accessToken: localStorage.getItem('accessToken')}} ).then(()=>{
+      // console.log("commment deleted")
+      setOpinions(opinions.filter((value)=>{
+        return value.id !== id;
+      }))
+    })
+  }
 
   return (
     <>
@@ -115,7 +127,11 @@ function Car() {
           {opinions.map((opinion, key) => {
             return (
               <div className="opinion" key={key}>
+                <div className="opinionUsername">
+                  <b>{opinion.username}</b>
+                </div>
                 <div className="opinionBody">{opinion.opinionBody}</div>
+                {authState.username === opinion.username && (<button onClick={() => {deleteOpinion(opinion.id)}}>Usuń opinię {opinion.id}</button>)}
                 <div className="opinionCreatedAt">
                   Dodano&nbsp;
                   {opinion.createdAt ? (

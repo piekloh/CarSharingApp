@@ -3,6 +3,8 @@ const router = express.Router();
 const {Users} = require('../models');
 const bcrypt = require("bcrypt");
 const {sign} = require('jsonwebtoken');
+const {validateToken} = require('../middleware/AuthMiddleware');
+
 
 //REJESTRACJA
 router.post('/', async (req,res)=>{
@@ -28,11 +30,13 @@ router.post('/login', async (req,res)=>{
     if(!match) return res.json({error: "Wrong username and password combination"})
     else{
       const accessToken = sign({username: user.username, id: user.id}, "importantSecret") //to jest ciąg znaków, nie obiekt
-      return res.json(accessToken); //return moze być potrzebne  
+      return res.json({token: accessToken, username: username, id: user.id});  
     }
   })
-
-
 }); 
+
+router.get('/auth', validateToken, (req, res) =>{
+  res.json(req.user) //to jest obiekt zawierający username, id itd.
+})
 
 module.exports = router;

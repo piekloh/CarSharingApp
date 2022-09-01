@@ -9,16 +9,47 @@ import CreateCar from "./pages/CreateCar";
 import Car from "./pages/Car";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
+import {AuthContext} from './helpers/AuthContext';
 
 
 function App() {
+
+  const [authState, setAuthState] = useState({
+    username: "",
+    id: 0,
+    status: false
+  })
+
+  useEffect(()=>{
+    axios.get('http://localhost:3001/auth/auth', {headers: {
+      accessToken: localStorage.getItem('accessToken')
+    }}).then((response)=>{
+      if(response.data.error) setAuthState({...authState, status: false});
+      else setAuthState({
+        username: response.data.username,
+        id: response.data.id,
+        status: true,
+      });
+    })
+  },[])
+
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/";
   //Eliminuje problem niewyświetlania się logo na podstronach po odświeżeniu
 
+  const logout = () =>{
+    localStorage.removeItem("accessToken");
+    setAuthState({
+      username: "",
+      id: 0,
+      status: false,
+    });
+  }
+
   return (
     <div className="App">
-      <Router>
+
+      <AuthContext.Provider value={{authState, setAuthState}}><Router>
         <nav className="navbar navbar-light navbar-expand-lg sticky-top pt-2 pb-0 ps-3 customNavBg">
           <Link to="/" className="navbar-brand">
             <img src={imageBasePath + "carsharinglogo.png"} />
@@ -42,6 +73,8 @@ function App() {
                   Strona główna <span className="sr-only"></span>
                 </Link>
               </li>
+              {!authState.status ? (<>
+              {/* !authState.status nie działa*/}
               <li className="nav-item active">
                 <Link to="/login" className="nav-link" href="#">
                   Logowanie <span className="sr-only"></span>
@@ -52,6 +85,14 @@ function App() {
                   Rejestracja <span className="sr-only"></span>
                 </Link>
               </li>
+
+              </>) : (<>
+              
+              <li className="nav-item active">
+                 <button onClick={logout}>Wyloguj</button>
+              </li>
+              {authState.username}
+              </>)}
             </ul>
             <form className="form-inline ms-auto ">
                   <ul className="navbar-nav">
@@ -93,7 +134,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
         </Routes>
-      </Router>
+      </Router></AuthContext.Provider>
     </div>
   );
 }
