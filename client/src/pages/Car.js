@@ -35,7 +35,10 @@ function Car() {
         }
       })
       .then((response) => {
-        if (response.data.error) console.log(response.data.error);
+        if (response.data.error) {
+          console.log(response.data.error);
+          document.querySelector('.errorMessage').innerHTML = 'Dodawanie opinii możliwe tylko po zalogowaniu'
+        } 
         else{
           setOpinions([...opinions, {id: response.data.id,opinionBody: newOpinion, CarId: id, username: response.data.username}]); 
 
@@ -108,17 +111,19 @@ function Car() {
       </div>
       <div className="opinions">
         <h3 className="pt-4">Opinie:</h3>
-        <div className="addOpinionContainer pt-4 ">
-          <input
+        <div className="addOpinionContainer py-4 ">
+          <textarea
+            rows='3'
             type="text"
             placeholder="Napisz swoją opinię..."
-            className="mx-2"
+            className="mx-2 my-2 form-control"
             onChange={(event) => {
               setNewOpinion(event.target.value);
             }}
             value={newOpinion}
           />
-          <button onClick={addOpinion}>Dodaj opinię</button>
+          <button onClick={addOpinion} className='btn'>Dodaj opinię</button>
+          <span className="errorMessage"></span>
         </div>
 
         {/* Opinions */}
@@ -128,11 +133,14 @@ function Car() {
             return (
               <div className="opinion" key={key}>
                 <div className="opinionUsername">
-                  <b>{opinion.username}</b>
+                  {opinion.username === 'admin' ? <b style={{ color: "blue" }}>[{opinion.username}]</b> : <b>{opinion.username}</b>}
+                  
                 </div>
                 <div className="opinionBody">{opinion.opinionBody}</div>
-                {authState.username === opinion.username && (<button onClick={() => {deleteOpinion(opinion.id)}}>Usuń opinię {opinion.id}</button>)}
+
                 <div className="opinionCreatedAt">
+                  {authState.username === opinion.username && (<button className="mx-2 btn deleteOpinionButton" onClick={() => {deleteOpinion(opinion.id)}}>Usuń opinię</button>)}
+
                   Dodano&nbsp;
                   {opinion.createdAt ? (
                     <span>

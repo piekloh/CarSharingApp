@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 function Registration() {
   let navigate = useNavigate();
+
+  const [password2, setPassword2] = useState("");
 
   const initialValues = {
     username: "",
@@ -24,43 +26,85 @@ function Registration() {
   });
 
   const onSubmit = async (data) => {
-    axios.post("http://localhost:3001/auth", data).then((response) => {
-      console.log("Account created");
-      navigate("/");
-    });
+    // console.log(data);
+    // console.log(password2 === data.password);
+
+    if (password2 === data.password) {
+      if (document.querySelector("#agreement").checked) {
+        axios.post("http://localhost:3001/auth", data).then((response) => {
+          console.log("Account created");
+          navigate("/");
+        });
+      } else {
+        document.querySelector(".notAccepted").innerHTML =
+          "Akceptuj warunki korzystania z serwisu";
+        
+      }
+    } else {
+      document.querySelector(".wrongPassword").innerHTML =
+        "Wprowadzone hasła nie są jednakowe";
+    }
   };
 
   return (
-    <div className="createCarPage">
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-      >
-        <Form>
-          {/* username */}
-          <div className="inputField">
-            <ErrorMessage name="username" component="p" />
-            <Field
-              className="inputCreateCar"
-              name="username"
-              placeholder="Nazwa użytkownika"
-            />
-          </div>
-          {/* password */}
-          <div className="inputField">
-            <ErrorMessage name="password" component="p" />
-            <Field
-              className="inputCreateCar"
-              name="password"
-              type="password"
-              placeholder="Hasło"
-            />
-          </div>
-          <button type="submit">Utwórz konto</button>
-          <div>Masz już konto? <a href="/login"> Zaloguj się</a></div>
-        </Form>
-      </Formik>
+    <div className="registrationContainer">
+      <div className="registrationTitle">Utwórz konto</div>
+      <div className="registrationInputs">
+        <Formik
+          initialValues={initialValues}
+          onSubmit={onSubmit}
+          validationSchema={validationSchema}
+        >
+          <Form>
+            {/* username */}
+            <div className="inputField">
+              <ErrorMessage name="username" component="p" />
+              <Field
+                className="inputCreateCar"
+                name="username"
+                placeholder="Nazwa użytkownika"
+              />
+            </div>
+            {/* password */}
+            <div className="inputField">
+              <ErrorMessage name="password" component="p" />
+              <Field
+                className="inputCreateCar"
+                name="password"
+                type="password"
+                placeholder="Hasło"
+              />
+            </div>
+            {/* password2 */}
+            <div className="wrongPassword"></div>
+            <div className="inputField">
+              <input
+                name="password2"
+                type="password"
+                placeholder="Powtórz hasło"
+                onChange={(event) => {
+                  setPassword2(event.target.value);
+                }}
+              />
+            </div>
+            <div className="agreement">
+              <div className="description">
+                Zapoznałem się z regulaminem serwisu
+              </div>
+              <div className="checkbox">
+                <input type="checkbox" id="agreement" />
+              </div>
+            </div>
+            <div className="notAccepted"></div>
+            <div className="registrationButton">
+              <button type="submit">Utwórz konto</button>
+            </div>
+            <div className="toLogin">
+              Masz już konto? <a href="/login"> Zaloguj się</a>
+            </div>
+          </Form>
+        </Formik>
+      </div>
     </div>
   );
 }

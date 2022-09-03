@@ -5,10 +5,8 @@ body{
   background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/cardboard_flat.png");
 }
 .App {
-  font-family:Georgia, 'Times New Roman', Times, serif;
-}
-.container{
-
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  letter-spacing: 1px;
 }
 .car{
   text-align: center;
@@ -80,10 +78,22 @@ body{
   color: rgb(160, 160, 160);
   background-color: rgb(110, 110, 110);
   border: 2px solid rgba(51, 51, 51, 0.4);
-  }
+}
 .navbar-brand img{
     width: 60px;
-  }
+}
+.nav-link{
+  cursor: pointer;
+}
+.nav-item input{
+  background-color: #efefef;
+}
+.loggedAsStatus{
+  font-size: 12px;
+}
+.loggedAsUser{
+  font-size: 16px;
+}
 
 /* CREATE CAR */
 .inputField{
@@ -92,6 +102,7 @@ body{
 .inputField  p{
   color: red
 }
+
 /* CAR */
 .carInfo{
   width: 900px;
@@ -106,8 +117,6 @@ body{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  ;
-  
 }
 .carInfo .image{
   padding-bottom: 40px;
@@ -138,5 +147,181 @@ body{
   padding-top: 10px;
   font-style: italic;
 }
+.errorMessage{
+  color: red;
+  margin-left: 10px;
+}
+.opinionCreatedAt .btn{
+  color: rgba(8, 8, 8, 0.4);
+  border: 2px solid rgba(8, 8, 8, 0.4);
+}
+.opinionCreatedAt .btn:hover{
+  color: rgb(160, 160, 160);
+  background-color: rgb(110, 110, 110);
+  border: 2px solid rgba(51, 51, 51, 0.4);
+}
+.addOpinionContainer .btn{
+  color: rgba(8, 8, 8, 0.4);
+  border: 2px solid rgba(8, 8, 8, 0.4);
+  margin-left: 10px;
+}
+.addOpinionContainer .btn:hover{
+  color: rgb(160, 160, 160);
+  background-color: rgb(110, 110, 110);
+  border: 2px solid rgba(51, 51, 51, 0.4);
+}
+
+/* LOGIN PAGE */
+.loginContainer{
+  background-color: rgb(160, 160, 160);
+  width: 500px;
+  padding: 50px;
+  position:relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  /*Box Shadow*/
+  -webkit-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  -moz-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  }
+  .loginTitle{
+    text-align: center;
+    padding-bottom: 30px;
+    font-size: 24px;
+  }
+  .loginInputs input{
+    width: 400px;
+    background-color: #efefef;
+    color: #666666;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 20px;
+    box-sizing: border-box; /*wstawiamy tę linijkę, żeby pola login, hasło i zaloguj się miały tę samą długość. Wtedy już padding nie poszerza dodatkowo tych pól*/
+    outline: none;
+    margin-bottom: 20px;
+  }
+  .loginInputs input:focus{
+    -webkit-box-shadow: 0px 0px 7px 2px rgba(156,156,156,0.9);
+    -moz-box-shadow: 0px 0px 7px 2px rgba(156,156,156,0.9);
+    box-shadow: 0px 0px 7px 2px rgba(156,156,156,0.9);
+    border: 2px solid rgb(97, 97, 97);
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+  .loginButton button{
+    width: 400px;
+    background-color: rgb(160, 160, 160);
+    border: 2px solid rgb(97, 97, 97);
+    border-radius: 5px;
+    padding: 15px 10px;
+    margin-top: 10px;
+    font-size: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    letter-spacing: 2px;
+    outline: none;
+  }
+  .loginButton button:hover{
+    background-color: rgba(51, 51, 51, 0.4); 
+  }
+
+  /* REGISTER PAGE */
+.registrationContainer{
+  background-color: rgb(160, 160, 160);
+  width: 500px;
+  padding: 50px;
+  position:relative;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  /*Box Shadow*/
+  -webkit-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  -moz-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+}
+.registrationTitle{
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 24px;
+}
+.registrationInputs input{
+  width: 380px;
+  background-color: #efefef;
+  color: #666666;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 20px;
+  box-sizing: border-box; /*wstawiamy tę linijkę, żeby pola login, hasło i zaloguj się miały tę samą długość. Wtedy już padding nie poszerza dodatkowo tych pól*/
+  outline: none;
+  margin-bottom: 20px;
+  margin-left: 0px;
+}
+.registrationInputs input:focus{
+  -webkit-box-shadow: 0px 0px 7px 2px rgba(156,156,156,0.9);
+  -moz-box-shadow: 0px 0px 7px 2px rgba(156,156,156,0.9);
+  box-shadow: 0px 0px 7px 2px rgba(156,156,156,0.9);
+  border: 2px solid rgb(97, 97, 97);
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+}
+.registrationButton button{
+  width: 380px;
+  background-color: rgb(160, 160, 160);
+  border: 2px solid rgb(97, 97, 97);
+  border-radius: 5px;
+  padding: 15px 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+  letter-spacing: 2px;
+  outline: none;
+  margin-left: 10px
+}
+.registrationButton button:hover{
+  background-color: rgba(51, 51, 51, 0.4); 
+}
+.toLogin{
+  margin: 10px 10px;
+}
+.toLogin a{
+  color: rgb(51, 51, 51);
+}
+.toLogin a:hover{
+  color: rgb(0, 0, 0);
+}
+.wrongPassword{
+  margin: 10px 10px;
+  color: red;
+}
+.agreement{
+  display: flex;
+  margin-left: 10px;
+}
+.agreement input{
+  margin-left: 40px;
+  width: 25px;
+  height: 25px;
+}
+.agreement input:checked{
+  outline-offset: -2px;
+  filter: grayscale(1)
+}
+.notAccepted{
+  margin-bottom: 10px;
+  margin-left: 10px;
+  color: red;
+}
+
+
+
+
+  
+
+
+
 
 
