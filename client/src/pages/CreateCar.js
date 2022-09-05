@@ -35,7 +35,7 @@ function CreateCar() {
     image:Yup.string().required("Wybierz zdjęcie"),
   })
 
-  const onSubmit = async (data)=>{
+  const onSubmit = (data)=>{
     const form = new FormData();
 
    console.log(data)
@@ -51,7 +51,7 @@ function CreateCar() {
     form.append('image', data.image);
 
 
-    axios.post("http://localhost:3001/cars", form)
+    axios.post("http://localhost:3001/cars", form, {headers: {accessToken: localStorage.getItem('accessToken')}})
       .then((response)=>{
       console.log("It worked")
       navigate('/');
@@ -75,6 +75,7 @@ function CreateCar() {
                 <option value='Audi'>Audi</option>
                 <option value='Toyota'>Toyota</option>
                 <option value='Skoda'>Skoda</option>
+                <option value='Lexus'>Lexus</option>
               </Field>
             </div>
 {/* model */}

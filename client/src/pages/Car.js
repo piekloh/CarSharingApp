@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {AuthContext} from '../helpers/AuthContext';
+import { AuthContext } from "../helpers/AuthContext";
 
 
 function Car() {
   let { id } = useParams();
+  let navigate = useNavigate();
 
   const [carObject, setCarObject] = useState({}); //obiekt
   const [opinions, setOpinions] = useState([]); //tabela obiektów
   const [newOpinion, setNewOpinion] = useState("");
-  const {authState} = useContext(AuthContext);
-
+  const { authState } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/cars/byId/${id}`).then((response) => {
@@ -25,36 +25,60 @@ function Car() {
 
   const addOpinion = () => {
     axios
-      .post(`http://localhost:3001/opinions`, {
-        opinionBody: newOpinion,
-        CarId: id,
-      },
-      {
-        headers:{
-          accessToken: localStorage.getItem("accessToken")
+      .post(
+        `http://localhost:3001/opinions`,
+        {
+          opinionBody: newOpinion,
+          CarId: id,
+        },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
         }
-      })
+      )
       .then((response) => {
         if (response.data.error) {
           console.log(response.data.error);
-          document.querySelector('.errorMessage').innerHTML = 'Dodawanie opinii możliwe tylko po zalogowaniu'
-        } 
-        else{
-          setOpinions([...opinions, {id: response.data.id,opinionBody: newOpinion, CarId: id, username: response.data.username}]); 
+          document.querySelector(".errorMessage").innerHTML =
+            "Dodawanie opinii możliwe tylko po zalogowaniu";
+        } else {
+          setOpinions([
+            ...opinions,
+            {
+              id: response.data.id,
+              opinionBody: newOpinion,
+              CarId: id,
+              username: response.data.username,
+            },
+          ]);
 
           setNewOpinion("");
-      }
+        }
       });
   };
 
-  const deleteOpinion = (id) =>{
-    axios.delete(`http://localhost:3001/opinions/${id}`, {headers: {accessToken: localStorage.getItem('accessToken')}} ).then(()=>{
-      // console.log("commment deleted")
-      setOpinions(opinions.filter((value)=>{
-        return value.id !== id;
-      }))
-    })
-  }
+  const deleteOpinion = (id) => {
+    axios
+      .delete(`http://localhost:3001/opinions/${id}`, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then(() => {
+        // console.log("commment deleted")
+        setOpinions(
+          opinions.filter((value) => {
+            return value.id !== id;
+          })
+        );
+      });
+  };
+
+  const deleteCar = (id) => {
+    axios.delete(`http://localhost:3001/cars/${id}`).then(()=> {
+      navigate('/');
+    });
+    
+  };
 
   return (
     <>
@@ -108,12 +132,21 @@ function Car() {
             </div>
           </div>
         </div>
+        {authState.username === "admin" && (
+          <button
+            onClick={() => {
+              deleteCar(carObject.id);
+            }}
+          >
+            Delete Car
+          </button>
+        )}
       </div>
       <div className="opinions">
         <h3 className="pt-4">Opinie:</h3>
         <div className="addOpinionContainer py-4 ">
           <textarea
-            rows='3'
+            rows="3"
             type="text"
             placeholder="Napisz swoją opinię..."
             className="mx-2 my-2 form-control"
@@ -122,7 +155,9 @@ function Car() {
             }}
             value={newOpinion}
           />
-          <button onClick={addOpinion} className='btn'>Dodaj opinię</button>
+          <button onClick={addOpinion} className="btn">
+            Dodaj opinię
+          </button>
           <span className="errorMessage"></span>
         </div>
 
@@ -133,14 +168,25 @@ function Car() {
             return (
               <div className="opinion" key={key}>
                 <div className="opinionUsername">
-                  {opinion.username === 'admin' ? <b style={{ color: "blue" }}>[{opinion.username}]</b> : <b>{opinion.username}</b>}
-                  
+                  {opinion.username === "admin" ? (
+                    <b style={{ color: "blue" }}>[{opinion.username}]</b>
+                  ) : (
+                    <b>{opinion.username}</b>
+                  )}
                 </div>
                 <div className="opinionBody">{opinion.opinionBody}</div>
 
                 <div className="opinionCreatedAt">
-                  {authState.username === opinion.username && (<button className="mx-2 btn deleteOpinionButton" onClick={() => {deleteOpinion(opinion.id)}}>Usuń opinię</button>)}
-
+                  {authState.username === opinion.username && (
+                    <button
+                      className="mx-2 btn deleteOpinionButton"
+                      onClick={() => {
+                        deleteOpinion(opinion.id);
+                      }}
+                    >
+                      Usuń opinię
+                    </button>
+                  )}
                   Dodano&nbsp;
                   {opinion.createdAt ? (
                     <span>
@@ -162,4 +208,3 @@ function Car() {
 }
 
 export default Car;
-

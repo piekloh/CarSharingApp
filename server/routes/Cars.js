@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {Cars} = require('../models')
+// const {validateToken} = require('../middleware/AuthMiddleware')
+
 
 ////////////////////image to db///////////////////
 const multer = require('multer')
@@ -59,11 +61,18 @@ router.post('/', upload, async (req,res)=>{
     price: req.body.price,
     size: req.body.size,
     available: req.body.available,
-    image: req.file.path //!!! tak się zapisuje plik
+    image: req.file.path, //!!! tak się zapisuje plik
   }
   await Cars.create(car);
   res.json(car);
   //
 }); 
+
+router.delete('/:carId', async (req,res)=>{
+  const carId = req.params.carId;
+  await Cars.destroy({where: {id: carId}})
+
+  res.json("Car deleted")
+})
 
 module.exports = router;

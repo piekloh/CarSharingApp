@@ -3,6 +3,7 @@ body{
   margin: 0;
   padding: 0;
   background-image: url("https://www.toptal.com/designers/subtlepatterns/uploads/cardboard_flat.png");
+  min-height: 900px;
 }
 .App {
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -20,12 +21,16 @@ body{
   -webkit-box-shadow: 10px 10px 84px -32px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 84px -32px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 84px -32px rgba(0,0,0,0.75);
+  filter: brightness(0.90);
 }
 .car:hover{
   cursor: pointer;
   -webkit-box-shadow: 10px 10px 5px 1px rgba(31, 31, 31, 0.4);
   -moz-box-shadow: 10px 10px 5px 1px rgba(36, 36, 36, 0.4);
   box-shadow: 10px 10px 5px 1px rgba(37, 37, 37, 0.4);
+  filter:brightness(1.0);
+  transition: all 0.4s ease-in-out;
+  transform: scale(1.03);
 }
 .car img{
   width: 40%;
