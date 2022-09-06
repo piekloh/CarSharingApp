@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
-
-
+// import { DatePicker } from '@mui/x-date-pickers';
 function Car() {
   let { id } = useParams();
   let navigate = useNavigate();
@@ -12,6 +11,7 @@ function Car() {
   const [opinions, setOpinions] = useState([]); //tabela obiektów
   const [newOpinion, setNewOpinion] = useState("");
   const { authState } = useContext(AuthContext);
+  const [startDate, setStartDate] = useState('')
 
   useEffect(() => {
     axios.get(`http://localhost:3001/cars/byId/${id}`).then((response) => {
@@ -74,10 +74,32 @@ function Car() {
   };
 
   const deleteCar = (id) => {
-    axios.delete(`http://localhost:3001/cars/${id}`).then(()=> {
-      navigate('/');
+    axios.delete(`http://localhost:3001/cars/${id}`).then(() => {
+      navigate("/");
     });
-    
+  };
+
+  const orderCar = () => {
+    const start = document.querySelector("#start").value; //działa
+    const stop = document.querySelector("#stop").value; //działa
+
+    axios
+      .post(
+        `http://localhost:3001/reservations`,
+        {
+          start: start,
+          stop: stop,
+          CarId: id,
+        },
+        {
+          headers: {
+            accessToken: localStorage.getItem("accessToken"),
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      });
   };
 
   return (
@@ -140,6 +162,30 @@ function Car() {
           >
             Delete Car
           </button>
+        )}
+        {authState.status ? (
+          <>
+            Początek:{" "}
+            <input
+              type="date"
+              id="start"
+              min={new Date().toISOString().substring(0, 10)}
+              onChange={(event)=>{
+                setStartDate(event.target.value)
+              }}
+            />
+            Koniec:{" "}
+            <input
+              type="date"
+              id="stop"
+              min={startDate}
+            />
+            <button onClick={orderCar}>Rezerwuj</button>
+          </>
+        ) : (
+          <>
+            <a href="/login">Zaloguj się</a>, żeby wypożyczyć samochód
+          </>
         )}
       </div>
       <div className="opinions">
