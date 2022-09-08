@@ -34,7 +34,7 @@ export default function MaterialUIPickers() {
     axios.get(`http://localhost:3001/reservations/${id}`).then((response) => {
       setReservations(response.data);
 
-      // console.log(response.data); //array of all reservations
+      // console.log(response.data); //array of all reservations for one car
 
       /////////////////Starting date//////////////////
 
@@ -88,7 +88,7 @@ export default function MaterialUIPickers() {
   };
 
   const onChangeStart = (newStart) => {
-    setStart(newStart);
+    setStart(newStart.$d);
 
     let disabledStartDatesMsSorted = disabledStartDatesMs.slice();
     disabledStartDatesMsSorted = disabledStartDatesMsSorted.sort(function (
@@ -156,7 +156,7 @@ export default function MaterialUIPickers() {
               value={stop}
               shouldDisableDate={disableStopDate}
               onChange={(newKon) => {
-                setStop(newKon);
+                setStop(newKon.$d);
                 // console.log(newKon.$d)
               }}
               renderInput={(params) => <TextField {...params} />}

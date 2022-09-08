@@ -80,29 +80,6 @@ function Car() {
     });
   };
 
-  const orderCar = () => {
-    const start = document.querySelector("#start").value; //działa
-    const stop = document.querySelector("#stop").value; //działa
-
-    axios
-      .post(
-        `http://localhost:3001/reservations`,
-        {
-          start: start,
-          stop: stop,
-          CarId: id,
-        },
-        {
-          headers: {
-            accessToken: localStorage.getItem("accessToken"),
-          },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      });
-  };
-
   return (
     <>
       <div className="carInfo">
@@ -173,9 +150,9 @@ function Car() {
             <MaterialUIPickers/>
           </>
         ) : (
-          <>
+          <div className="loginToOrder pb-3">
             <a href="/login">Zaloguj się</a>, żeby wypożyczyć samochód
-          </>
+          </div>
         )}
         
       </div>

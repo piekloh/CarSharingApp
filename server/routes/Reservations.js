@@ -7,6 +7,7 @@ const { Op } = require("sequelize");
 
 router.post('/', validateToken, async (req, res) =>{
   const reservation = req.body;
+  console.log(reservation)
   reservation.UserId = req.user.id;
 
   const reserStartFormatted = new Date(reservation.start).getTime();
@@ -15,8 +16,8 @@ router.post('/', validateToken, async (req, res) =>{
   const collision = await Reservations.findAll({
     where: {
     [Op.or]: [
-      {start: {[Op.between]: [reserStartFormatted, reserStopFormatted]}},
-      {stop: {[Op.between]: [reserStartFormatted, reserStopFormatted]}}
+      {[Op.and]:[{start: {[Op.between]: [reserStartFormatted, reserStopFormatted]}}, {CarId: req.body.CarId}]},
+      {[Op.and]:[{stop: {[Op.between]: [reserStartFormatted, reserStopFormatted]}}, {CarId: req.body.CarId}]}
     ]
   }})
 
