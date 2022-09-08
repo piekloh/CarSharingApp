@@ -28,7 +28,12 @@ router.post('/', validateToken, async (req, res) =>{
   else{
     res.send("We wskazanym terminie samochód jest już zajęty. Wybierz inny termin.")
   }
+})
 
+router.get('/:carId', async (req,res)=>{
+  const carId = req.params.carId;
+  const reservations = await Reservations.findAll({where: {CarId: carId}});
+  res.json(reservations);
 })
 
 module.exports = router;

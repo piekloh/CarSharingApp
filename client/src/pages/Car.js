@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
-// import { DatePicker } from '@mui/x-date-pickers';
+import MaterialUIPickers from "../helpers/MaterialUIPickers";
+
 function Car() {
   let { id } = useParams();
   let navigate = useNavigate();
@@ -155,42 +156,48 @@ function Car() {
           </div>
         </div>
         {authState.username === "admin" && (
-          <button
+          <div className="deleteButton pb-4">
+            <button className="btn"
             onClick={() => {
               deleteCar(carObject.id);
             }}
-          >
+            >
             Delete Car
-          </button>
+            </button>
+          </div>
+
         )}
+        <h3 className="pt-4">Zarezerwuj termin:</h3>
         {authState.status ? (
           <>
-            Początek:{" "}
-            <input
-              type="date"
-              id="start"
-              min={new Date().toISOString().substring(0, 10)}
-              onChange={(event)=>{
-                setStartDate(event.target.value)
-              }}
-            />
-            Koniec:{" "}
-            <input
-              type="date"
-              id="stop"
-              min={startDate}
-            />
-            <button onClick={orderCar}>Rezerwuj</button>
+            <MaterialUIPickers/>
           </>
         ) : (
           <>
             <a href="/login">Zaloguj się</a>, żeby wypożyczyć samochód
           </>
         )}
+        
       </div>
+
+
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
       <div className="opinions">
         <h3 className="pt-4">Opinie:</h3>
-        <div className="addOpinionContainer py-4 ">
+        <div className="addOpinionContainer py-3 ">
           <textarea
             rows="3"
             type="text"
