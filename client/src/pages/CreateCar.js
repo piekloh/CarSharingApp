@@ -3,6 +3,7 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
+import CarBrands from '../helpers/CarBrands';
 
 const FormData = require('form-data');
 
@@ -71,11 +72,7 @@ function CreateCar() {
               <label>Marka samochodu: </label>
               <Field className='inputCreateCar' name='brand' as='select'>
                 <option value=''>-</option>
-                <option value='Opel'>Opel</option>
-                <option value='Audi'>Audi</option>
-                <option value='Toyota'>Toyota</option>
-                <option value='Skoda'>Skoda</option>
-                <option value='Lexus'>Lexus</option>
+                <CarBrands/>           
               </Field>
             </div>
 {/* model */}
