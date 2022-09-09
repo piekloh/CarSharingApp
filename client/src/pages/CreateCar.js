@@ -39,7 +39,7 @@ function CreateCar() {
   const onSubmit = (data)=>{
     const form = new FormData();
 
-   console.log(data)
+  //  console.log(data)
 
     form.append('brand', data.brand);
     form.append('model', data.model);
@@ -54,7 +54,7 @@ function CreateCar() {
 
     axios.post("http://localhost:3001/cars", form, {headers: {accessToken: localStorage.getItem('accessToken')}})
       .then((response)=>{
-      console.log("It worked")
+        console.log(response.data)
       navigate('/');
     })
     

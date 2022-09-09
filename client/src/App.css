@@ -357,6 +357,10 @@ body{
   margin-left: 10px;
   color: red;
 }
+.userExists{
+  margin: 10px 10px;
+  color: red;
+}
 
 
 

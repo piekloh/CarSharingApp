@@ -26,14 +26,20 @@ function Registration() {
   });
 
   const onSubmit = async (data) => {
-    // console.log(data);
-    // console.log(password2 === data.password);
 
     if (password2 === data.password) {
       if (document.querySelector("#agreement").checked) {
         axios.post("http://localhost:3001/auth", data).then((response) => {
+          if(response.data.error){
+            console.log(response.data.error)
+            document.querySelector(".userExists").innerHTML =
+            "Użytkownik o podanej nazwie już istnieje";
+          } 
+          else{
           console.log("Account created");
           navigate("/");
+          }
+
         });
       } else {
         document.querySelector(".notAccepted").innerHTML =
@@ -99,6 +105,7 @@ function Registration() {
             <div className="registrationButton">
               <button type="submit">Utwórz konto</button>
             </div>
+            <div className="userExists"></div>
             <div className="toLogin">
               Masz już konto? <a href="/login"> Zaloguj się</a>
             </div>
