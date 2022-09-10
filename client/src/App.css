@@ -84,6 +84,26 @@ body{
   background-color: rgb(110, 110, 110);
   border: 2px solid rgba(51, 51, 51, 0.4);
 }
+.searchButton{
+  margin: 0px 20px
+}
+
+@media (max-width: 991px){
+	/* Wszystko, co znajdzie się pomiędzy klamrami będzie obowiązywać tylko dla szerokości ekranu maks. 575px (max bo wpisaliśmy max-width, inaczej trochę nie ma sensu) */
+ul > li {
+  padding-left: 20px;
+}
+.searchButton{
+  margin: 10px 0px
+
+}
+.loggedAsStatus{
+  font-size: 12px;
+  padding: 10px 10px
+}
+
+}
+
 .navbar-brand img{
     width: 60px;
 }
@@ -95,6 +115,7 @@ body{
 }
 .loggedAsStatus{
   font-size: 12px;
+  margin-left: 10px;
 }
 .loggedAsUser{
   font-size: 16px;
@@ -103,10 +124,89 @@ body{
 /* CREATE CAR */
 .inputField{
   padding: 10px;
+  margin: 10px;
 }
 .inputField  p{
   color: red
 }
+.createCarPage{
+  background-color: rgb(160, 160, 160);
+  width: 600px;
+  padding: 50px;
+  margin: 100px auto;
+  border-radius: 8px;
+  border: 2px solid rgb(110, 110, 110);
+  /*Box Shadow*/
+  -webkit-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  -moz-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+}
+.createCarTitle{
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 24px;
+}
+.createCarPage input{
+  width: 140px;
+}
+.createCarPage select{
+  width: 140px;
+}
+#inputImage{
+  width: 270px;
+  height: 37px;
+}
+.inputField input{
+  float: right;
+  width:140px;
+  height: 26px;
+  background-color: #efefef;
+  color: #666666;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  padding: 0px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.inputField select{
+  float: right;
+  width:140px;
+  height: 26px;
+  background-color: #efefef;
+  color: #666666;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 18px;
+  outline: none;
+  margin-bottom: 20px;
+}
+.createCarPage button {
+  width: 400px;
+  background-color: rgb(160, 160, 160);
+  border: 2px solid rgb(97, 97, 97);
+  border-radius: 5px;
+  padding: 15px 10px;
+  margin-top: 30px;
+  font-size: 20px;
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 2px;
+  outline: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.createCarPage button:hover{
+  background-color: rgba(51, 51, 51, 0.4);
+}
+
+
+
+
+
+
+
 
 /* CAR */
 .carInfo{
@@ -222,6 +322,8 @@ body{
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
+  border-radius: 8px;
+  border: 2px solid rgb(110, 110, 110);
   /*Box Shadow*/
   -webkit-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
   -moz-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
@@ -278,6 +380,8 @@ body{
   margin-left: auto;
   margin-right: auto;
   margin-top: 100px;
+  border-radius: 8px;
+  border: 2px solid rgb(110, 110, 110);
   /*Box Shadow*/
   -webkit-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
   -moz-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
