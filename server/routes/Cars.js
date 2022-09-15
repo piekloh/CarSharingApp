@@ -5,6 +5,7 @@ const fs = require('fs');
 
 
 ////////////////////image to db///////////////////
+//
 const multer = require('multer')
 const path = require('path')
 
@@ -37,6 +38,7 @@ const upload = multer({
 module.exports={
   upload
 }
+//
 ////////////////////image to db////////////////////
 
 

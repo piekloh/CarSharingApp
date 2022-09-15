@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const {Reservations} = require('../models')
 const {validateToken} = require('../middleware/AuthMiddleware');
-// const moment = require('moment')
 const { Op } = require("sequelize");
+
 
 router.post('/', validateToken, async (req, res) =>{
   const reservation = req.body;
@@ -23,8 +23,8 @@ router.post('/', validateToken, async (req, res) =>{
 
   if(collision.length===0){
     //no collisions
-      await Reservations.create(reservation).then((reser)=>{
-    res.json(reser);
+    await Reservations.create(reservation).then((reser)=>{
+      res.json(reser);
   })}
   else{
     res.send("We wskazanym terminie samochód jest już zajęty. Wybierz inny termin.")

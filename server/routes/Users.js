@@ -28,11 +28,11 @@ router.post("/login", async (req, res) => {
 
   const user = await Users.findOne({ where: { username: username } });
 
-  if (!user) return res.json({ error: "User doens't exist" });
+  if (!user) return res.json({ error: "Użytkownik o podanej nazwie nie istnieje" });
 
   bcrypt.compare(password, user.password).then((match) => {
     if (!match)
-      return res.json({ error: "Wrong username and password combination" });
+      return res.json({ error: "Nieprawidłowa nazwa użytkownika lub hasło" });
     else {
       const accessToken = sign(
         { username: user.username, id: user.id },
