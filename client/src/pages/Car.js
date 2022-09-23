@@ -31,6 +31,7 @@ function Car() {
         {
           opinionBody: newOpinion,
           CarId: id,
+          UserId: authState.id,
         },
         {
           headers: {

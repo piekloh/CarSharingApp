@@ -103,6 +103,12 @@ body{
 .loggedAsUser{
   font-size: 16px;
 }
+.loggedAsUser a{
+  color: rgb(51, 51, 51);
+}
+.loggedAsUser a:hover{
+  color: rgba(0, 0, 0, 0.781);
+}
 
 @media (max-width: 991px){
 	/* Wszystko, co znajdzie się pomiędzy klamrami będzie obowiązywać tylko dla szerokości ekranu maks. 575px (max bo wpisaliśmy max-width, inaczej trochę nie ma sensu) */
@@ -472,6 +478,37 @@ body{
   color: red;
 }
 
+/* PROFILE PAGE */
+
+.profilePageContainer{
+  background-color: rgb(160, 160, 160);
+  width: 900px;
+  padding: 50px;
+  margin: 100px auto;
+  border-radius: 8px;
+  border: 2px solid rgb(110, 110, 110);
+  /*Box Shadow*/
+  -webkit-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  -moz-box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+  box-shadow: 10px 10px 30px 5px rgba(156,156,156,0.9);
+}
+.profilePageContainer .accountCreatedAt{
+  border-bottom: 2px solid rgb(143, 143, 143);
+}
+.profilePageContainer .table td{
+  width: 50%;
+}
+.profilePageContainer .opinions{
+  width: 800px;
+  padding: 10px 0px;
+}
+.profilePageContainer  .opinion{
+  width: 800px;
+  margin: 10px 0px;
+}
+.profilePageContainer  .opinionCreatedAt{
+  color: #212529;
+}
 
 
 

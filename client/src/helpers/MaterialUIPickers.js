@@ -108,15 +108,15 @@ export default function MaterialUIPickers() {
   };
 
   /////////////DISABLING DATES//////////////////
-  function disableRandomDates() {
-    return Math.random() > 0.7;
-  }
-  function disableWeekends(date) {
-    return date.getDay() === 0 || date.getDay() === 6;
-  }
-  function disableOneDate(date) {
-    return date.$d.getTime() === new Date("2022-09-09T00:00").getTime();
-  }
+  // function disableRandomDates() {
+  //   return Math.random() > 0.7;
+  // }
+  // function disableWeekends(date) {
+  //   return date.getDay() === 0 || date.getDay() === 6;
+  // }
+  // function disableOneDate(date) {
+  //   return date.$d.getTime() === new Date("2022-09-09T00:00").getTime();
+  // }
   function disableStartDates(date) {
     return disabledStartDatesMs.includes(date.$d.getTime());
   }

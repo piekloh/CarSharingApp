@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {Opinions} = require('../models')
+const { Users } = require("../models");
 const {validateToken} = require('../middleware/AuthMiddleware');
 
 router.get('/:carId', async (req,res)=>{
@@ -25,6 +26,12 @@ router.delete('/:opinionId', validateToken, async (req, res)=>{
   await Opinions.destroy({where: {id: opinionId}});
 
   res.json("opinion deleted");
+})
+
+router.get('/byuser/:userId', async (req,res)=>{
+  const userId = req.params.userId;
+  const opinions = await Opinions.findAll({where: {UserId: userId}});
+  res.json(opinions);
 })
 
 

@@ -8,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
   const { AuthState, setAuthState } = useContext(AuthContext);
+  const { profilePath, setProfilePath } = useContext(AuthContext);
 
   const login = () => {
     const data = { username: username, password: password };
@@ -21,6 +22,8 @@ function Login() {
           id: response.data.id,
           status: true,
         });
+        const path = "/profile/"+JSON.stringify(response.data.id);
+        setProfilePath({path}) //works while logging but not immediately
         navigate("/");
       }
     });

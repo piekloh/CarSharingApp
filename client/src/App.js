@@ -9,10 +9,12 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from '@mui/icons-material/Person';
 import CreateCar from "./pages/CreateCar";
 import Car from "./pages/Car";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
+import Profile from "./pages/Profile";
 import { AuthContext } from "./helpers/AuthContext";
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
     id: 0,
     status: false,
   });
+  const [profilePath, setProfilePath] = useState('')
 
   useEffect(() => {
     axios
@@ -37,12 +40,18 @@ function App() {
             id: response.data.id,
             status: true,
           });
+
+          setProfilePath("/profile/"+JSON.stringify(response.data.id)) //works when refreshing page
+          // console.log(profilePath)//displays correctly
       });
-  }, []);
+  }, [profilePath]);
+  // [profilePath] makes setProfilePath works immediately
 
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/";
   //Eliminuje problem niewyświetlania się logo na podstronach po odświeżeniu
+
+  
 
   const logout = () => {
     localStorage.removeItem("accessToken");
@@ -51,11 +60,12 @@ function App() {
       id: 0,
       status: false,
     });
+    setProfilePath('');
   };
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ authState, setAuthState }}>
+      <AuthContext.Provider value={{ authState, setAuthState, profilePath, setProfilePath }}>
         <Router>
           <nav className="navbar navbar-light navbar-expand-lg sticky-top pt-2 pb-0 ps-3 pe-3 mb-3 customNavBg">
             <Link to="/" className="navbar-brand">
@@ -121,7 +131,7 @@ function App() {
                       <li className="nav-item dropdown loggedAsStatus">
                         Jesteś zalogowany jako:
                         <div className="loggedAsUser">
-                          <b>{authState.username}</b>
+                          <b><Link to={profilePath}>{authState.username}<PersonIcon className="ms-1"/></Link></b>
                         </div>
                       </li>
                     </>
@@ -154,6 +164,7 @@ function App() {
             <Route path="/car/:id" element={<Car />} />
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Routes>
         </Router>
       </AuthContext.Provider>

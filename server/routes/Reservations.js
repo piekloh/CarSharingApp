@@ -37,5 +37,11 @@ router.get('/:carId', async (req,res)=>{
   res.json(reservations);
 })
 
+router.get('/byuser/:userId', async (req,res)=>{
+  const userId = req.params.userId;
+  const reservations = await Reservations.findAll({where: {UserId: userId}});
+  res.json(reservations);
+})
+
 module.exports = router;
 

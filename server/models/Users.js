@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
     Users.hasMany(models.Reservations, {
       onDelete: "cascade",
     })
+    Users.hasMany(models.Opinions, {
+      onDelete: "cascade",
+    })
   }
 
   return Users;
