@@ -110,6 +110,55 @@ body{
   color: rgba(0, 0, 0, 0.781);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.filterBar{
+  position: fixed;
+  right: 10px;
+  width: 250px;
+  height: 450px;
+  background-color: rgb(143, 143, 143);
+  border-radius: 8px;
+}
+.inputField  {
+  float: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 991px){
 	/* Wszystko, co znajdzie się pomiędzy klamrami będzie obowiązywać tylko dla szerokości ekranu maks. 575px (max bo wpisaliśmy max-width, inaczej trochę nie ma sensu) */
   ul > li {
@@ -126,10 +175,7 @@ body{
   .car{
     min-width: 600px;
     margin-left: auto;
-    margin-right: auto;
-    
-
-    
+    margin-right: auto; 
   }
 }
 

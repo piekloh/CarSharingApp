@@ -24,6 +24,8 @@ function App() {
     status: false,
   });
   const [profilePath, setProfilePath] = useState('')
+  const [searchTerm, setSearchTerm] = useState('');
+
 
   useEffect(() => {
     axios
@@ -65,7 +67,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ authState, setAuthState, profilePath, setProfilePath }}>
+      <AuthContext.Provider value={{ authState, setAuthState, profilePath, setProfilePath, searchTerm, setSearchTerm }}>
         <Router>
           <nav className="navbar navbar-light navbar-expand-lg sticky-top pt-2 pb-0 ps-3 pe-3 mb-3 customNavBg">
             <Link to="/" className="navbar-brand">
@@ -99,6 +101,9 @@ function App() {
                       type="search"
                       placeholder="Wyszukaj na stronie..."
                       aria-label="Wyszukaj"
+                      onChange={(event)=>{
+                        setSearchTerm(event.target.value)
+                      }}
                     />
                   </li>
                   <li className="nav-item dropdown">
@@ -140,6 +145,8 @@ function App() {
               </form>
             </div>
           </nav>
+
+          
 
           {authState.username === "admin" && (
             <Link to="/createcar" title="Dodaj nowy samochód">
