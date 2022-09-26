@@ -132,7 +132,9 @@ function Car() {
               )}
             </div>
           </div>
-        </div>
+        </div><button onClick={()=>{
+          navigate(`/editcar/${id}`)
+        }}>Edytuj samochód</button>
         {authState.username === "admin" && (
           <div className="deleteButton pb-4">
             <button className="btn"
@@ -157,22 +159,6 @@ function Car() {
         )}
         
       </div>
-
-
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
       <div className="opinions">
         <h3 className="pt-4">Opinie:</h3>
         <div className="addOpinionContainer py-3 ">

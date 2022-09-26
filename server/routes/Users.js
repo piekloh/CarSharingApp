@@ -4,6 +4,22 @@ const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 const { validateToken } = require("../middleware/AuthMiddleware");
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'etester168@gmail.com',
+    pass: 'dykocrknuiogzilk'
+  }
+});
+
+const mailOptions = {
+  from: 'etester168@gmail.com',
+  to: 'yourEmailAddress@xyz.com',
+  subject: 'Carsharing App',
+  text: 'Your account has been successfully created!'
+};
 
 //REGISTRATION
 router.post("/", async (req, res) => {
@@ -17,6 +33,15 @@ router.post("/", async (req, res) => {
         username: username,
         password: hash,
       });
+      //Sending an email
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      }); 
+
       res.json("user added");
     });
   }
@@ -38,11 +63,11 @@ router.post("/login", async (req, res) => {
         { username: user.username, id: user.id },
         "importantSecret"
       ); //to jest ciąg znaków, nie obiekt
+
       return res.json({ token: accessToken, username: username, id: user.id });
     }
   });
 });
-
 
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user); //to jest obiekt zawierający username, id itd.
@@ -55,3 +80,4 @@ router.get("/basicinfo/:id", async (req,res)=>{
 })
 
 module.exports = router;
+

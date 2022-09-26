@@ -109,21 +109,6 @@ body{
 .loggedAsUser a:hover{
   color: rgba(0, 0, 0, 0.781);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .filterBar{
   position: fixed;
   right: 10px;
@@ -135,30 +120,6 @@ body{
 .inputField  {
   float: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 991px){
 	/* Wszystko, co znajdzie się pomiędzy klamrami będzie obowiązywać tylko dla szerokości ekranu maks. 575px (max bo wpisaliśmy max-width, inaczej trochę nie ma sensu) */
   ul > li {

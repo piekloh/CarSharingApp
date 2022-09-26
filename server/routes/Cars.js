@@ -82,4 +82,27 @@ router.delete('/:carId', async (req,res)=>{
   res.json("Car deleted")
 })
 
+router.put('/edit/:carId', upload, async (req,res)=>{
+  const carId = req.params.carId;
+  const carToUpdate = await Cars.findOne({ where: { id: carId } });
+  const imagePath = carToUpdate.image;
+  fs.unlinkSync(imagePath);
+
+  let car = {
+    brand: req.body.brand,
+    model: req.body.model,
+    passengers: req.body.passengers,
+    doors: req.body.doors,
+    gearbox: req.body.gearbox,
+    price: req.body.price,
+    size: req.body.size,
+    available: req.body.available,
+    image: req.file.path, //!!! tak się zapisuje plik
+  }
+
+  await carToUpdate.update(car)
+
+  res.json("Car changed")
+})
+
 module.exports = router;

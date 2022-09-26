@@ -9,12 +9,14 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import PersonIcon from '@mui/icons-material/Person';
 import CreateCar from "./pages/CreateCar";
 import Car from "./pages/Car";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import Profile from "./pages/Profile";
+import EditCar from "./pages/EditCar"
 import { AuthContext } from "./helpers/AuthContext";
 
 function App() {
@@ -148,7 +150,7 @@ function App() {
 
           
 
-          {authState.username === "admin" && (
+          {authState.username === "admin" ? (
             <Link to="/createcar" title="Dodaj nowy samochód">
               <AddCircleIcon
                 sx={{
@@ -161,7 +163,19 @@ function App() {
                 }}
               />
             </Link>
-          )}
+          ) : (<ArrowCircleUpIcon sx={{
+                  fontSize: 60,
+                  color: "rgb(143, 143, 143)",
+                  "&:hover": { color: "rgb(110, 110, 110)", cursor: "pointer" },
+                  position: "fixed",
+                  right: 40,
+                  bottom: 40,
+                }}
+                onClick={()=>{
+                  window.scrollTo(0,0)
+                }}
+              />
+            )}
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -172,6 +186,9 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/registration" element={<Registration />} />
             <Route path="/profile/:id" element={<Profile />} />
+            {authState.username === "admin" && (
+              <Route path="/editcar/:id" element={<EditCar />} />
+            )}
           </Routes>
         </Router>
       </AuthContext.Provider>
