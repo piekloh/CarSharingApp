@@ -23,11 +23,12 @@ function Home() {
   return (
     <div className="App">
       <div className="container">
-        <div className="filterBar ps-3 pt-3">
-          <b>Filtruj wyniki:</b>
-          <div className="inputField m-0 ps-0">
+        <div className="filterBar ">
+          <div className="filter results"><b>Filtruj wyniki:</b></div>
+          <div className="inputField mt-0 ms-0 ps-0 pb-0">
             <div className="mb-2">Marka samochodu: </div>
             <select
+              id="brandSelector"
               className="inputCreateCar"
               name="brand"
               onChange={(event) => {
@@ -38,7 +39,12 @@ function Home() {
               <CarBrands />
             </select>
           </div>
+          
           <div style={{ clear: "both" }}></div>
+          <button className="btn" onClick={()=>{
+            setBrandFilterValue("");
+            document.querySelector("#brandSelector").value = "";
+          }}>Wyczyść filtry</button>
         </div>
         <div className="row" id='carsContainer'>
           {listOfCars.map((value, key) => {

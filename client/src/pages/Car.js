@@ -142,7 +142,7 @@ function Car() {
               deleteCar(carObject.id);
             }}
             >
-            Delete Car
+            Usuń samochód
             </button>
           </div>
 

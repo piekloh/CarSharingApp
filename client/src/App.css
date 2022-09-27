@@ -114,12 +114,53 @@ body{
   right: 10px;
   width: 250px;
   height: 450px;
+  margin: 20px 20px;
+  padding: 20px 20px;
   background-color: rgb(143, 143, 143);
   border-radius: 8px;
 }
 .inputField  {
   float: left;
 }
+.filterBar button{
+  color: rgba(8, 8, 8, 0.4);
+  border: 2px solid rgba(8, 8, 8, 0.4);
+  display: block;
+  margin: auto;
+}
+.filterBar button:hover{
+  color: rgb(160, 160, 160);
+  background-color: rgb(110, 110, 110);
+  border: 2px solid rgba(51, 51, 51, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 991px){
 	/* Wszystko, co znajdzie się pomiędzy klamrami będzie obowiązywać tylko dla szerokości ekranu maks. 575px (max bo wpisaliśmy max-width, inaczej trochę nie ma sensu) */
   ul > li {
@@ -137,6 +178,15 @@ body{
     min-width: 600px;
     margin-left: auto;
     margin-right: auto; 
+  }
+  .filterBar{
+    position: static;
+    margin: auto;
+    width: 100%;
+    height: 200px;
+    margin: 20px 0px;
+    background-color: rgb(143, 143, 143);
+    border-radius: 8px;
   }
 }
 
