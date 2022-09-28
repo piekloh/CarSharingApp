@@ -133,34 +133,6 @@ body{
   background-color: rgb(110, 110, 110);
   border: 2px solid rgba(51, 51, 51, 0.4);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @media (max-width: 991px){
 	/* Wszystko, co znajdzie się pomiędzy klamrami będzie obowiązywać tylko dla szerokości ekranu maks. 575px (max bo wpisaliśmy max-width, inaczej trochę nie ma sensu) */
   ul > li {
@@ -225,6 +197,10 @@ body{
   width: 270px;
   height: 37px;
 }
+.inputField{
+  width: 100%;
+  margin: 0;
+}
 .inputField input{
   float: right;
   width:140px;
@@ -269,13 +245,6 @@ body{
 .createCarPage button:hover{
   background-color: rgba(51, 51, 51, 0.4);
 }
-
-
-
-
-
-
-
 
 /* CAR */
 .carInfo{
@@ -357,7 +326,17 @@ body{
   border: 2px solid rgba(255, 0, 0, 0.4);
   background-color: red;
 }
+.editCarButton .btn{
+  color: rgba(8, 8, 8, 0.4);
+  border: 2px solid rgba(8, 8, 8, 0.4);
+  float: right;
+}
+.editCarButton .btn:hover{
+  color: rgb(160, 160, 160);
+  background-color: rgb(110, 110, 110);
+  border: 2px solid rgba(51, 51, 51, 0.4);
 
+}
 /* MATERIALUIPICKERS */
 .datepickers{
   display: flex;

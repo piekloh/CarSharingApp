@@ -132,9 +132,9 @@ function Car() {
               )}
             </div>
           </div>
-        </div><button onClick={()=>{
+        </div><div className="editCarButton"><button className="btn ms-2" onClick={()=>{
           navigate(`/editcar/${id}`)
-        }}>Edytuj samochód</button>
+        }}>Edytuj samochód</button></div>
         {authState.username === "admin" && (
           <div className="deleteButton pb-4">
             <button className="btn"
