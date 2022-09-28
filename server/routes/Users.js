@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 const mailOptions = {
   from: 'etester168@gmail.com',
-  to: 'yourEmailAddress@xyz.com', //type your email here
+  to: 'yourEmailAddress@xyz.com',
   subject: 'Carsharing App',
   text: 'Your account has been successfully created!'
 };
