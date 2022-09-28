@@ -53,7 +53,7 @@ function App() {
 
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/";
-  //Eliminuje problem niewyświetlania się logo na podstronach po odświeżeniu
+  //Eliminate a problem of not showing logo in subpages after refreshing
 
   
 

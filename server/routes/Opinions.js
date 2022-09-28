@@ -16,7 +16,7 @@ router.post('/', validateToken, async (req, res) =>{
   opinion.username = username;
   await Opinions.create(opinion).then((op)=>{
     res.json(op);
-    //rozwiązuje problem niemożności usunięcia opinii tuż po dodaniu, bo zwracamy wiersz bezpośrednio z bazy danych
+    //solve problem of not being able to delete opinion just after adding, we're returning a DB record directly
   })
 })
 

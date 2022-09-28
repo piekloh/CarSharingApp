@@ -52,11 +52,6 @@ function EditCar() {
     form.append("available", data.available);
     form.append("image", data.image);
 
-
-      //Brakuje id w URLu PUT
-
-
-
     axios
       .put(`http://localhost:3001/cars/edit/${id}`, form, {
         headers: { accessToken: localStorage.getItem("accessToken") },

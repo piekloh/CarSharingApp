@@ -13,7 +13,6 @@ export default function MaterialUIPickers() {
   var todayDate =
     now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
   let nowInMs = now.getTime();
-  let tommorowTime = new Date(nowInMs + 1000 * 60 * 60 * 24);
   let maxDateTime = new Date(nowInMs + 1000 * 60 * 60 * 24 * 90); //90 days later
 
   let { id } = useParams();
@@ -107,16 +106,6 @@ export default function MaterialUIPickers() {
     setDisabledStopDateMs(closestStopDateMs);
   };
 
-  /////////////DISABLING DATES//////////////////
-  // function disableRandomDates() {
-  //   return Math.random() > 0.7;
-  // }
-  // function disableWeekends(date) {
-  //   return date.getDay() === 0 || date.getDay() === 6;
-  // }
-  // function disableOneDate(date) {
-  //   return date.$d.getTime() === new Date("2022-09-09T00:00").getTime();
-  // }
   function disableStartDates(date) {
     return disabledStartDatesMs.includes(date.$d.getTime());
   }

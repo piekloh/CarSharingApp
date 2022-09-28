@@ -23,7 +23,7 @@ const mailOptions = {
 
 //REGISTRATION
 router.post("/", async (req, res) => {
-  const { username, password } = req.body; //login i hasło osobno pobieramy
+  const { username, password } = req.body; //login and password brought alone
   const user = await Users.findOne({ where: { username: username } });
 
   if (user) res.json({error: "A user with this username already exists"});
@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
       const accessToken = sign(
         { username: user.username, id: user.id },
         "importantSecret"
-      ); //to jest ciąg znaków, nie obiekt
+      ); //it's a string, not object
 
       return res.json({ token: accessToken, username: username, id: user.id });
     }
@@ -70,7 +70,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.get("/auth", validateToken, (req, res) => {
-  res.json(req.user); //to jest obiekt zawierający username, id itd.
+  res.json(req.user); //object containing username, id etc.
 });
 
 router.get("/basicinfo/:id", async (req,res)=>{

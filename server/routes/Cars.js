@@ -32,9 +32,8 @@ const upload = multer({
     }
     cb('Give proper files formate to upload')
   }
-}).single('image') //ten sam "image" co w models/Cars.js(kolumna w BD)
-//single, czyli, że będziemy dodawać tylko 1 obrazek
-
+}).single('image') //the same "image" as in models/Cars.js(column in DB)
+//"single" means we are adding one picture
 
 module.exports={
   upload
@@ -64,7 +63,7 @@ router.post('/', upload, async (req,res)=>{
     price: req.body.price,
     size: req.body.size,
     available: req.body.available,
-    image: req.file.path, //!!! tak się zapisuje plik
+    image: req.file.path, //!!! the way of saving files
   }
   await Cars.create(car);
   res.json(car);
@@ -97,7 +96,7 @@ router.put('/edit/:carId', upload, async (req,res)=>{
     price: req.body.price,
     size: req.body.size,
     available: req.body.available,
-    image: req.file.path, //!!! tak się zapisuje plik
+    image: req.file.path,
   }
 
   await carToUpdate.update(car)

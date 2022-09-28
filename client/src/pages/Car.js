@@ -8,8 +8,8 @@ function Car() {
   let { id } = useParams();
   let navigate = useNavigate();
 
-  const [carObject, setCarObject] = useState({}); //obiekt
-  const [opinions, setOpinions] = useState([]); //tabela obiektów
+  const [carObject, setCarObject] = useState({}); //object
+  const [opinions, setOpinions] = useState([]); //array of objects
   const [newOpinion, setNewOpinion] = useState("");
   const { authState } = useContext(AuthContext);
   const [startDate, setStartDate] = useState('')
