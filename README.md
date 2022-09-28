@@ -1,10 +1,10 @@
-Car Sharing App
+**Car Sharing App**
 
 A web aplication "Car Sharing App" is the system which supports management of a car rental.
 It contains the basic functionalities like: adding cars to DB, displaying them, making reservations,adding opinions and more...
 The app can automate storing and adding data about cars in car rental and help managing reservations.
 
-Functionalities of the app:
+**Functionalities of the app:**
 - displaying cars already added to database on the main page,
 - possiblility to open individual window of each car with details of it,
 - creating accounts (including admin account with more rights),
@@ -21,7 +21,7 @@ Functionalities of the app:
 - filtering results by car brand,
 - scroll up button.
 
-Technologies/libraries used during the work on the project:
+**Technologies/libraries used during the work on the project:**
 •	Visual Studio Code,
 •	Git,
 •	MySQL,
@@ -47,7 +47,7 @@ Technologies/libraries used during the work on the project:
 •	Multer,
 •	Nodemon.
 
-Preview:
+**Preview:**
 
 ![obraz](https://user-images.githubusercontent.com/81360745/192820808-ecd6560d-15d0-4fef-851d-288421497e57.png)
 
@@ -95,7 +95,7 @@ Image 9. Working search bar
 
 
 
-How to get started with the project?
+**How to get started with the project?**
 
 1. Node.js, npm and MySQL have to be installed.
 2. Clone this repo.
@@ -106,13 +106,13 @@ How to get started with the project?
 7. Run React.js in "client" folder with "npm install" and then "npm start" commands.
 
 
-In case of problems in point 7 typing the following commands might help:
+In case of problems in point 7 typing all the following commands might help:
 
-rm -rf package-lock.json npm-shrinkwrap.json node_modules
-npm cache clean --force
-npm cache verify
-npm install
-npm start
+- rm -rf package-lock.json npm-shrinkwrap.json node_modules
+- npm cache clean --force
+- npm cache verify
+- npm install
+- npm start
 
 
 
