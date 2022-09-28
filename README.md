@@ -1,6 +1,6 @@
 **Car Sharing App**
 
-A web aplication "Car Sharing App" is the system which supports management of a car rental.
+A web application "Car Sharing App" is the system supporting management of a car rental.
 It contains the basic functionalities like: adding cars to DB, displaying them, making reservations,adding opinions and more...
 The app can automate storing and adding data about cars in car rental and help managing reservations.
 
@@ -8,10 +8,10 @@ The app can automate storing and adding data about cars in car rental and help m
 - displaying cars already added to database on the main page,
 - possiblility to open individual window of each car with details of it,
 - creating accounts (including admin account with more rights),
-- logging system,
+- logging in/out system,
 - adding cars to DB (available only for admin),
 - deleting cars (only for admin),
-- editing inromation about cars,
+- editing inromation about cars (only for admin),
 - making reservations of chosen cars by each user,
 - adding opinions about every car,
 - deleting opinions available only for users who added them,
@@ -21,7 +21,7 @@ The app can automate storing and adding data about cars in car rental and help m
 - filtering results by car brand,
 - scroll up button.
 
-**Technologies/libraries used during the work on the project:**
+**Technologies/libraries/languages used during the work on the project:**
 -	Visual Studio Code,
 -	Git,
 -	MySQL,
@@ -98,7 +98,7 @@ Image 9. Working search bar
 **How to get started with the project?**
 
 1. Node.js, npm and MySQL have to be installed.
-2. Clone this repo.
+2. Clone this repo with command: "git clone https://github.com/piekloh/CarSharingApp.git".
 3. Create a database in MySQL.
 4. Adjust information about your DB according to server/config/config.json (or change them in this file)
 5. Open two terminals: one in "server" directory, one in "client" directory.
@@ -106,7 +106,7 @@ Image 9. Working search bar
 7. Run React.js in "client" folder with "npm install" and then "npm start" commands.
 
 
-In case of problems in point 7 typing all the following commands might help:
+In case of problems in point 7, typing all the following commands might help:
 
 - rm -rf package-lock.json npm-shrinkwrap.json node_modules
 - npm cache clean --force
