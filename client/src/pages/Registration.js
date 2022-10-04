@@ -96,10 +96,10 @@ function Registration() {
             <div className="agreement">
               <div className="description">
                 Zapoznałem się z <a href="#">regulaminem</a> serwisu
-              </div>
-              <div className="checkbox">
-                <input type="checkbox" id="agreement" />
-              </div>
+              <input type="checkbox" id="agreement" className="me-2"/></div>
+
+                
+
             </div>
             <div className="notAccepted"></div>
             <div className="registrationButton">

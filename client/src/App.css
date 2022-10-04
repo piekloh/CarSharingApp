@@ -492,13 +492,17 @@ body{
   color: red;
 }
 .agreement{
-  display: flex;
+  display: block;
   margin-left: 10px;
 }
 .agreement input{
   margin-left: 40px;
   width: 25px;
   height: 25px;
+  display: block;
+}
+#agreement{
+  float: right;
 }
 .agreement input:checked{
   outline-offset: -2px;
