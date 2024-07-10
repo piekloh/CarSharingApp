@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "freedb_piekloh",
-    "password": "&ZqP4U%Jc&PpJ5!",
-    "database": "freedb_carsharingdb",
-    "host": "sql.freedb.tech",
+    "username": "avnadmin",
+    "password": "AVNS_VBcMSXhSgRfw3mrs2hG",
+    "database": "carsharingdb",
+    "host": "mysql-321d3076-car-sharing-app.l.aivencloud.com",
     "dialect": "mysql",
-    "port": 3306
+    "port": 19920
   }
 }
