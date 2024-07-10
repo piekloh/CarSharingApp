@@ -12,7 +12,6 @@ function Car() {
   const [opinions, setOpinions] = useState([]); //array of objects
   const [newOpinion, setNewOpinion] = useState("");
   const { authState } = useContext(AuthContext);
-  const [startDate, setStartDate] = useState('')
 
   useEffect(() => {
     axios.get(`http://localhost:3001/cars/byId/${id}`).then((response) => {
@@ -22,6 +21,7 @@ function Car() {
     axios.get(`http://localhost:3001/opinions/${id}`).then((response) => {
       setOpinions(response.data);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const addOpinion = () => {
@@ -96,6 +96,7 @@ function Car() {
         </div>
         <div className="image">
           {carObject.image && (
+            // eslint-disable-next-line jsx-a11y/alt-text
             <img
               className="img-fluid"
               src={carObject.image
@@ -132,32 +133,39 @@ function Car() {
               )}
             </div>
           </div>
-        </div><div className="editCarButton"><button className="btn ms-2" onClick={()=>{
-          navigate(`/editcar/${id}`)
-        }}>Edytuj samochód</button></div>
+        </div>
+        <div className="editCarButton">
+          <button
+            className="btn ms-2"
+            onClick={() => {
+              navigate(`/editcar/${id}`);
+            }}
+          >
+            Edytuj samochód
+          </button>
+        </div>
         {authState.username === "admin" && (
           <div className="deleteButton pb-4">
-            <button className="btn"
-            onClick={() => {
-              deleteCar(carObject.id);
-            }}
+            <button
+              className="btn"
+              onClick={() => {
+                deleteCar(carObject.id);
+              }}
             >
-            Usuń samochód
+              Usuń samochód
             </button>
           </div>
-
         )}
         <h3 className="pt-4">Zarezerwuj termin:</h3>
         {authState.status ? (
           <>
-            <MaterialUIPickers/>
+            <MaterialUIPickers />
           </>
         ) : (
           <div className="loginToOrder pb-3">
             <a href="/login">Zaloguj się</a>, żeby wypożyczyć samochód
           </div>
         )}
-        
       </div>
       <div className="opinions">
         <h3 className="pt-4">Opinie:</h3>

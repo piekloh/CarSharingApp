@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function Profile() {
@@ -34,12 +34,15 @@ function Profile() {
         console.log(response.data);
         setUserOpinions(response.data);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="profilePageContainer">
       <div className="username">
-        <h2 className="mb-4"><b>{userInfo.username}</b></h2>
+        <h2 className="mb-4">
+          <b>{userInfo.username}</b>
+        </h2>
       </div>
       <div className="accountCreatedAt pb-2 mb-2">
         Konto utworzono: {userInfo.createdAt}
@@ -93,7 +96,7 @@ function Profile() {
               <div className="opinionBody">{opinion.opinionBody}</div>
 
               <div className="opinionCreatedAt">
-                Samochód nr {opinion.CarId};   
+                Samochód nr {opinion.CarId};
                 {opinion.createdAt ? (
                   <span className="ms-2">
                     {opinion.createdAt.replace("T", ", ").replace(".000Z", "")}

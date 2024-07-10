@@ -9,7 +9,7 @@ import CarBrands from "../helpers/CarBrands";
 function Home() {
   const [listOfCars, setListOfCars] = useState([]);
   let navigate = useNavigate();
-  const { searchTerm, setSearchTerm } = useContext(AuthContext);
+  const { searchTerm } = useContext(AuthContext);
   const [brandFilterValue, setBrandFilterValue] = useState("");
 
   useEffect(() => {
@@ -18,13 +18,13 @@ function Home() {
     });
   }, []);
 
-
-
   return (
     <div className="App">
       <div className="container">
         <div className="filterBar ">
-          <div className="filter results"><b>Filtruj wyniki:</b></div>
+          <div className="filter results">
+            <b>Filtruj wyniki:</b>
+          </div>
           <div className="inputField mt-0 ms-0 ps-0 pb-0">
             <div className="mb-2">Marka samochodu: </div>
             <select
@@ -39,19 +39,28 @@ function Home() {
               <CarBrands />
             </select>
           </div>
-          
+
           <div style={{ clear: "both" }}></div>
-          <button className="btn" onClick={()=>{
-            setBrandFilterValue("");
-            document.querySelector("#brandSelector").value = "";
-          }}>Wyczyść filtry</button>
+          <button
+            className="btn"
+            onClick={() => {
+              setBrandFilterValue("");
+              document.querySelector("#brandSelector").value = "";
+            }}
+          >
+            Wyczyść filtry
+          </button>
         </div>
-        <div className="row" id='carsContainer'>
+        <div className="row" id="carsContainer">
+          {/* eslint-disable-next-line array-callback-return */}
           {listOfCars.map((value, key) => {
-            if ((brandFilterValue=='' && (searchTerm === "" || (value.brand + " " + value.model)
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase()) )) ||
-              (searchTerm==="" && brandFilterValue==value.brand)
+            if (
+              (brandFilterValue === "" &&
+                (searchTerm === "" ||
+                  (value.brand + " " + value.model)
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()))) ||
+              (searchTerm === "" && brandFilterValue === value.brand)
             ) {
               return (
                 <div
@@ -85,6 +94,7 @@ function Home() {
                       <p>{value.price}</p>
                     </div>
                     {value.image && (
+                      // eslint-disable-next-line jsx-a11y/alt-text
                       <img
                         className="img-thumbnail"
                         src={value.image

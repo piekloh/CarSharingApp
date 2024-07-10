@@ -2,21 +2,21 @@ import "./App.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import 'bootstrap';
+import "bootstrap";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
-import PersonIcon from '@mui/icons-material/Person';
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import PersonIcon from "@mui/icons-material/Person";
 import CreateCar from "./pages/CreateCar";
 import Car from "./pages/Car";
 import Login from "./pages/Login";
 import Registration from "./pages/Registration";
 import Profile from "./pages/Profile";
-import EditCar from "./pages/EditCar"
+import EditCar from "./pages/EditCar";
 import { AuthContext } from "./helpers/AuthContext";
 
 function App() {
@@ -25,9 +25,8 @@ function App() {
     id: 0,
     status: false,
   });
-  const [profilePath, setProfilePath] = useState('')
-  const [searchTerm, setSearchTerm] = useState('');
-
+  const [profilePath, setProfilePath] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     axios
@@ -45,17 +44,15 @@ function App() {
             status: true,
           });
 
-          setProfilePath("/profile/"+JSON.stringify(response.data.id)) //works when refreshing page
-          // console.log(profilePath)//displays correctly
+        setProfilePath("/profile/" + JSON.stringify(response.data.id)); //works when refreshing page
+        // console.log(profilePath)//displays correctly
       });
-  }, [profilePath]);
+  }, [authState, profilePath]);
   // [profilePath] makes setProfilePath works immediately
 
   var imageBasePath =
     window.location.protocol + "//" + window.location.host + "/images/";
   //Eliminate a problem of not showing logo in subpages after refreshing
-
-  
 
   const logout = () => {
     localStorage.removeItem("accessToken");
@@ -64,15 +61,25 @@ function App() {
       id: 0,
       status: false,
     });
-    setProfilePath('');
+    setProfilePath("");
   };
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ authState, setAuthState, profilePath, setProfilePath, searchTerm, setSearchTerm }}>
+      <AuthContext.Provider
+        value={{
+          authState,
+          setAuthState,
+          profilePath,
+          setProfilePath,
+          searchTerm,
+          setSearchTerm,
+        }}
+      >
         <Router>
           <nav className="navbar navbar-light navbar-expand-lg sticky-top pt-2 pb-0 ps-3 pe-3 mb-3 customNavBg">
             <Link to="/" className="navbar-brand">
+              {/* eslint-disable-next-line jsx-a11y/alt-text */}
               <img src={imageBasePath + "carsharinglogo.png"} />
             </Link>
 
@@ -103,8 +110,8 @@ function App() {
                       type="search"
                       placeholder="Wyszukaj na stronie..."
                       aria-label="Wyszukaj"
-                      onChange={(event)=>{
-                        setSearchTerm(event.target.value)
+                      onChange={(event) => {
+                        setSearchTerm(event.target.value);
                       }}
                     />
                   </li>
@@ -138,7 +145,12 @@ function App() {
                       <li className="nav-item dropdown loggedAsStatus">
                         Jesteś zalogowany jako:
                         <div className="loggedAsUser">
-                          <b><Link to={profilePath}>{authState.username}<PersonIcon className="ms-1"/></Link></b>
+                          <b>
+                            <Link to={profilePath}>
+                              {authState.username}
+                              <PersonIcon className="ms-1" />
+                            </Link>
+                          </b>
                         </div>
                       </li>
                     </>
@@ -147,8 +159,6 @@ function App() {
               </form>
             </div>
           </nav>
-
-          
 
           {authState.username === "admin" ? (
             <Link to="/createcar" title="Dodaj nowy samochód">
@@ -163,19 +173,21 @@ function App() {
                 }}
               />
             </Link>
-          ) : (<ArrowCircleUpIcon sx={{
-                  fontSize: 60,
-                  color: "rgb(143, 143, 143)",
-                  "&:hover": { color: "rgb(110, 110, 110)", cursor: "pointer" },
-                  position: "fixed",
-                  right: 40,
-                  bottom: 40,
-                }}
-                onClick={()=>{
-                  window.scrollTo(0,0)
-                }}
-              />
-            )}
+          ) : (
+            <ArrowCircleUpIcon
+              sx={{
+                fontSize: 60,
+                color: "rgb(143, 143, 143)",
+                "&:hover": { color: "rgb(110, 110, 110)", cursor: "pointer" },
+                position: "fixed",
+                right: 40,
+                bottom: 40,
+              }}
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
+            />
+          )}
 
           <Routes>
             <Route path="/" element={<Home />} />

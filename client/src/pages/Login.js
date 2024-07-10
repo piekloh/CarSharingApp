@@ -7,8 +7,8 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
-  const { AuthState, setAuthState } = useContext(AuthContext);
-  const { profilePath, setProfilePath } = useContext(AuthContext);
+  const { setAuthState } = useContext(AuthContext);
+  const { setProfilePath } = useContext(AuthContext);
 
   const login = () => {
     const data = { username: username, password: password };
@@ -22,8 +22,8 @@ function Login() {
           id: response.data.id,
           status: true,
         });
-        const path = "/profile/"+JSON.stringify(response.data.id);
-        setProfilePath({path}) //works while logging but not immediately
+        const path = "/profile/" + JSON.stringify(response.data.id);
+        setProfilePath({ path }); //works while logging but not immediately
         navigate("/");
       }
     });
@@ -34,35 +34,37 @@ function Login() {
       <div className="loginTitle">Zaloguj się</div>
       <div className="loginInputs">
         <input
-          id='username'
+          id="username"
           type="text"
           onChange={(event) => {
             setUsername(event.target.value);
           }}
-          onKeyPress={(event)=>{
+          onKeyPress={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              document.querySelector('#login').click();
-          }
+              document.querySelector("#login").click();
+            }
           }}
           placeholder="Nazwa użytkownika"
         ></input>
         <input
-          id='password'
+          id="password"
           type="password"
           onChange={(event) => {
             setPassword(event.target.value);
           }}
-          onKeyPress={(event)=>{
+          onKeyPress={(event) => {
             if (event.key === "Enter") {
               event.preventDefault();
-              document.querySelector('#login').click();
-          }
+              document.querySelector("#login").click();
+            }
           }}
           placeholder="Hasło"
         ></input>
         <div className="loginButton">
-          <button id='login' onClick={login}>Zaloguj</button>
+          <button id="login" onClick={login}>
+            Zaloguj
+          </button>
         </div>
       </div>
     </div>
