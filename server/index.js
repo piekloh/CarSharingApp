@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 //Static folder
-app.use('/Images', express.static('../client/public/images'))
+app.use('/Images', express.static('../client/public/Images'))
 
 //Routers
 
