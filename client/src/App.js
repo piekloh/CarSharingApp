@@ -51,7 +51,7 @@ function App() {
   // [profilePath] makes setProfilePath works immediately
 
   var imageBasePath =
-    window.location.protocol + "//" + window.location.host + "/Images/";
+    window.location.protocol + "//" + window.location.host + "/images/";
   //Eliminate a problem of not showing logo in subpages after refreshing
 
   const logout = () => {
