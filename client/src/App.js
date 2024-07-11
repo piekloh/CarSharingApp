@@ -47,7 +47,8 @@ function App() {
         setProfilePath("/profile/" + JSON.stringify(response.data.id)); //works when refreshing page
         // console.log(profilePath)//displays correctly
       });
-  }, [authState, profilePath]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profilePath]);
   // [profilePath] makes setProfilePath works immediately
 
   var imageBasePath =
