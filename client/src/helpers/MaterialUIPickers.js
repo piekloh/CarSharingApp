@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import Stack from "@mui/material/Stack";
@@ -18,7 +18,7 @@ export default function MaterialUIPickers() {
   let { id } = useParams();
   const [start, setStart] = React.useState(dayjs(todayDate));
   const [stop, setStop] = React.useState(dayjs(todayDate));
-  const [reservations, setReservations] = useState([]);
+  const [setReservations] = useState([]);
   const arrayReservedDatesMs = [];
   const [disabledStartDatesMs, setDisabledStartDatesMs] =
     useState(arrayReservedDatesMs);
@@ -50,6 +50,7 @@ export default function MaterialUIPickers() {
       // console.log(arrayReservedDatesMs);
       setDisabledStartDatesMs(arrayReservedDatesMs);
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const orderCar = () => {

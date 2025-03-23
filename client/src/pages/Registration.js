@@ -26,25 +26,21 @@ function Registration() {
   });
 
   const onSubmit = async (data) => {
-
     if (password2 === data.password) {
       if (document.querySelector("#agreement").checked) {
         axios.post("http://localhost:3001/auth", data).then((response) => {
-          if(response.data.error){
-            console.log(response.data.error)
+          if (response.data.error) {
+            console.log(response.data.error);
             document.querySelector(".userExists").innerHTML =
-            "Użytkownik o podanej nazwie już istnieje";
-          } 
-          else{
-          console.log("Account created");
-          navigate("/");
+              "Użytkownik o podanej nazwie już istnieje";
+          } else {
+            console.log("Account created");
+            navigate("/");
           }
-
         });
       } else {
         document.querySelector(".notAccepted").innerHTML =
           "Akceptuj warunki korzystania z serwisu";
-        
       }
     } else {
       document.querySelector(".wrongPassword").innerHTML =
@@ -95,11 +91,10 @@ function Registration() {
             </div>
             <div className="agreement">
               <div className="description">
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 Zapoznałem się z <a href="#">regulaminem</a> serwisu
-              <input type="checkbox" id="agreement" className="me-2"/></div>
-
-                
-
+                <input type="checkbox" id="agreement" className="me-2" />
+              </div>
             </div>
             <div className="notAccepted"></div>
             <div className="registrationButton">
