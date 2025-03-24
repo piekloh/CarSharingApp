@@ -62,7 +62,7 @@ function Profile() {
           {userReservations.length !== 0 ? (
             userReservations.map((value, key) => {
               return (
-                <tbody>
+                <tbody key={value.id}>
                   <tr>
                     <td>
                       <i>

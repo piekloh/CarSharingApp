@@ -4,21 +4,21 @@ const { Users } = require("../models");
 const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 const { validateToken } = require("../middleware/AuthMiddleware");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: "gmail",
   auth: {
-    user: 'etester168@gmail.com',
-    pass: 'dykocrknuiogzilk'
-  }
+    user: "etester168@gmail.com",
+    pass: "dykocrknuiogzilk",
+  },
 });
 
 const mailOptions = {
-  from: 'etester168@gmail.com',
-  to: 'yourEmailAddress@xyz.com', //type your email here
-  subject: 'Carsharing App',
-  text: 'Your account has been successfully created!'
+  from: "etester168@gmail.com",
+  to: "yourEmailAddress@xyz.com", //type your email here
+  subject: "Carsharing App",
+  text: "Your account has been successfully created!",
 };
 
 //REGISTRATION
@@ -26,7 +26,7 @@ router.post("/", async (req, res) => {
   const { username, password } = req.body; //login and password brought alone
   const user = await Users.findOne({ where: { username: username } });
 
-  if (user) res.json({error: "A user with this username already exists"});
+  if (user) res.json({ error: "A user with this username already exists" });
   else {
     bcrypt.hash(password, 10).then((hash) => {
       Users.create({
@@ -34,13 +34,13 @@ router.post("/", async (req, res) => {
         password: hash,
       });
       //Sending an email
-      transporter.sendMail(mailOptions, function(error, info){
+      transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
           console.log(error);
         } else {
-          console.log('Email sent: ' + info.response);
+          console.log("Email sent: " + info.response);
         }
-      }); 
+      });
 
       res.json("user added");
     });
@@ -53,7 +53,8 @@ router.post("/login", async (req, res) => {
 
   const user = await Users.findOne({ where: { username: username } });
 
-  if (!user) return res.json({ error: "Użytkownik o podanej nazwie nie istnieje" });
+  if (!user)
+    return res.json({ error: "Użytkownik o podanej nazwie nie istnieje" });
 
   bcrypt.compare(password, user.password).then((match) => {
     if (!match)
@@ -73,11 +74,16 @@ router.get("/auth", validateToken, (req, res) => {
   res.json(req.user); //object containing username, id etc.
 });
 
-router.get("/basicinfo/:id", async (req,res)=>{
+router.get("/basicinfo/:id", async (req, res) => {
   const userId = req.params.id;
-  const userInfo = await Users.findByPk(userId, {attributes: {exclude: ["password"]}}) //we don't want to return password so we exclude it
-  res.json(userInfo)
-})
+  // const userInfo = await Users.findByPk(userId, {
+  //   attributes: { exclude: ["password"] },
+  // }); //we don't want to return password so we exclude it
+  const userInfo = await Users.findOne({
+    where: { id: userId },
+    attributes: { exclude: ["password"] },
+  }); //we don't want to return password so we exclude it
+  res.json(userInfo);
+});
 
 module.exports = router;
-

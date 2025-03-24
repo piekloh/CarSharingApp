@@ -46,7 +46,7 @@ router.get("/", async (req, res) => {
 
 router.get("/byId/:id", async (req, res) => {
   const id = req.params.id;
-  const car = await Cars.findByPk(id);
+  const car = await Cars.findOne({ where: { id: id } });
   res.json(car);
 });
 

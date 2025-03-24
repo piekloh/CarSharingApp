@@ -18,7 +18,7 @@ export default function MaterialUIPickers() {
   let { id } = useParams();
   const [start, setStart] = React.useState(dayjs(todayDate));
   const [stop, setStop] = React.useState(dayjs(todayDate));
-  const [setReservations] = useState([]);
+  const [reservations, setReservations] = useState([]);
   const arrayReservedDatesMs = [];
   const [disabledStartDatesMs, setDisabledStartDatesMs] =
     useState(arrayReservedDatesMs);
