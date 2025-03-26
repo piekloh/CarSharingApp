@@ -1,10 +1,10 @@
 **Car Sharing App**
 
-A contenerized web application "Car Sharing App" is the system supporting management of a car rental.
+A dockerized web application "Car Sharing App" is the system supporting management of a car rental.
 It contains the basic functionalities like: adding cars to DB, displaying them, making reservations,adding opinions and more...
 The app can automate storing and adding data about cars in car rental and help managing reservations.
 
-The whole app has been contenerized in Docker.
+The whole app has been containerized in Docker.
 Each part of the app (React.js frontend, Node.js backend, MySQL database) has been placed in separate Docker container.
 All of them works together and cooperate thanks to Docker Compose.
 
