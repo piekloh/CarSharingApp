@@ -4,7 +4,11 @@ const fs = require("fs");
 const path = require("path");
 const Sequelize = require("sequelize");
 const basename = path.basename(__filename);
-const dbConfig = require("../config/config.json")["development"];
+require("dotenv").config();
+const productionMode = process.env.PRODUCTION;
+const dbConfig = require("../config/config.json")[
+  productionMode === "false" ? "development" : "production"
+];
 const db = {};
 
 let sequelize = new Sequelize(
