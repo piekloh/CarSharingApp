@@ -4,35 +4,43 @@ A contenerized web application "Car Sharing App" is the system supporting manage
 It contains the basic functionalities like: adding cars to DB, displaying them, making reservations,adding opinions and more...
 The app can automate storing and adding data about cars in car rental and help managing reservations.
 
+The whole app has been contenerized in Docker.
+Each part of the app (React.js frontend, Node.js backend, MySQL database) has been placed in separate Docker container.
+All of them works together and cooperate thanks to Docker Compose.
+
 **Functionalities of the app:**
 - displaying cars already added to database on the main page,
-- possiblility to open individual window of each car with details of it,
+- possiblility to open individual window of each car with its details,
 - creating accounts (including admin account with more rights),
 - logging in/out system,
 - adding cars to DB (available only for admin),
 - deleting cars (only for admin),
-- editing inromation about cars (only for admin),
+- editing infomation about cars (only for admin),
 - making reservations of chosen cars by each user,
 - adding opinions about every car,
 - deleting opinions available only for users who added them,
 - displaying a profile page of every user with information about reservations, added opinions and date of creating account,
 - sending an email with confirmation after creating an account,
-- search bar which works when a brand or model of the car (or both) is being typed,
+- search bar which dynamically updates content of the vehicles list,
 - filtering results by car brand,
 - scroll up button.
 
 **Technologies/libraries/languages used during the work on the project:**
+- React.js
+- Node.js
+-	MySQL,
+-	Express,
+-	npm,
 -	Visual Studio Code,
 -	Git,
--	MySQL,
--	Insomnia,
 -	JavaScript,
 -	HTML,
 -	CSS,
+-	Sequelize,
+- Docker
+- Docker Compose
 -	Bootstrap,
--	React.js,
 -	JSX,
--	npm,
 -	Material UI,
 -	React Router,
 -	Axios,
@@ -40,9 +48,8 @@ The app can automate storing and adding data about cars in car rental and help m
 -	Yup,
 -	Bcrypt,
 -	CORS,
--	Express,
+-	Insomnia,
 -	Express-fileupload,
--	Sequelize,
 -	JSON Web Token (JWT),
 -	Multer,
 -	Nodemon.
@@ -96,27 +103,11 @@ Image 9. Working search bar
 
 
 **How to get started with the project?**
-
-1. Node.js, npm and MySQL have to be installed.
-2. Clone this repo with command: "git clone https://github.com/piekloh/CarSharingApp.git".
-3. Create a database in MySQL.
-4. Adjust information about your DB according to server/config/config.json (or change them in this file)
-5. Open two terminals: one in "server" directory, one in "client" directory.
-6. Run server with "npm start" in "server" folder.
-7. Run React.js in "client" folder with "npm install" and then "npm start" commands.
-
-
-In case of problems in point 7, typing all the following commands might help:
-
-- rm -rf package-lock.json npm-shrinkwrap.json node_modules
-- npm cache clean --force
-- npm cache verify
-- npm install
-- npm start
-
-
-
-
+1. A machine with Docker and Docker Compose installed is needed. For example Windows Subsystem for Linux (WSL2) might be a good option.
+2. Clone repo e.g. with command: "git clone https://github.com/piekloh/CarSharingApp.git".
+3. Change directory to app root folder (cd CarSharingApp/)
+4. Run "docker-compose up --build -d"
+5. App will be available on localhost:3000 and backend serves on localhost:3001.
 
 
 
