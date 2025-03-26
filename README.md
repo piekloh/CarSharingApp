@@ -1,6 +1,6 @@
 **Car Sharing App**
 
-A web application "Car Sharing App" is the system supporting management of a car rental.
+A contenerized web application "Car Sharing App" is the system supporting management of a car rental.
 It contains the basic functionalities like: adding cars to DB, displaying them, making reservations,adding opinions and more...
 The app can automate storing and adding data about cars in car rental and help managing reservations.
 
